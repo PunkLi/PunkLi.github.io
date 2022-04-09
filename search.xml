@@ -1,42 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>旋转表示法</title>
-    <url>/2018/03.%E6%97%8B%E8%BD%AC%E8%A1%A8%E7%A4%BA%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="一、向量和坐标系"><a href="#一、向量和坐标系" class="headerlink" title="一、向量和坐标系"></a>一、向量和坐标系</h1><p>要想确定一个坐标，首先要建立坐标系。在三维空间中建立的坐标系通常都是两两垂直的，坐标系也叫做线性空间中的一组基 $(e_{1},e_{2},e_{3})$ ，向量 $a$ 在这组基的坐标就可以表示成：    </p>
-<script type="math/tex; mode=display">
-a=[e_{1},e_{2},e_{3}]\left[\begin{matrix}a_{1} \\ a_{2} \\ a_3\end{matrix}\right]=a_{1}e_{1}+a_{2}e_{2}+a_{3}e_{3}</script><p>向量有内积和外积之分，<br>内积表示为 $a^Tb$ ，可以描述为两个向量之间的投影关系。<br>外积表示为 $ab^T$ ，外积大小是两个向量张成四边形的有向面积，之所以有向，是因为外积方向垂直于这两个向量构成的平面，且满足右手定理， $ab^T$ 和 $ba^T$ 会得到大小相同，方向相反的结果。</p>
-<a id="more"></a> 
-<h1 id="二、旋转向量"><a href="#二、旋转向量" class="headerlink" title="二、旋转向量"></a>二、旋转向量</h1><p>向量的外积是可以表示旋转的，假设物体从 $a$ 旋转到 $b$ 转过的角度为 $\theta$ ,那么旋转的方向和大小分别可以用有向面积的正负和大小来表示，它们的外积方向垂直于它们构成的平面（右手定律），长度等于张成四边形的面积。<br>于是，我们可以使用一个向量，其方向与旋转轴一致，长度等于旋转角来描述旋转，表示为 $\theta n$ （$\theta$为旋转角， $n$ 为旋转轴）。在三维空间中，只需要三个这样的向量，并且它们可以构成线性空间中的一组基，就可以描述三维空间中任意的刚体旋转。<br>根据3条旋转轴建立空间坐标，可以略去对转轴的描述，因此，通过一个空间中的三维向量就可以描述旋转，这就是旋转向量。<br>旋转向量通过3个参数控制了6个自由度的旋转。其表示非常紧凑。</p>
-<h1 id="三、旋转矩阵"><a href="#三、旋转矩阵" class="headerlink" title="三、旋转矩阵"></a>三、旋转矩阵</h1><p>旋转向量描述的是物体原地做旋转，给人感觉并不关心坐标系，在使用旋转向量的时候，就默认自己是坐标系的中心了。<br>设某个单位正交基 $(e_{1},e_{2},e_{3})$ 经过一次旋转变成了 $(e_{1}’,e_{2}’,e_{3}’)$ ，那么对于同一个向量 $a$ (注意向量并没有跟随坐标系的旋转而发生运动)，它在两个坐标系下的坐标为 $[a_{1},a_{2},a_{3}]^T$ 和 $[a_{1}’,a_{2}’,a_{3}’]^T$ 。根据坐标定义，有：</p>
-<script type="math/tex; mode=display">[e_{1},e_{2},e_{3}]\left[\begin{matrix}a_{1} \\ a_{2}\\ a_3\end{matrix}\right]=[e_{1}',e_{2}',e_{3}']\left[\begin{matrix}a_{1}' \\ a_{2}' \\ a_{3}'\end{matrix}\right]</script><p>可以得到 $a=Ra’$ ，这里的 矩阵$R$ 称为旋转矩阵。可以把旋转矩阵的集合定义为</p>
-<script type="math/tex; mode=display">SO(n)=\{ {\boldsymbol{R}\in\mathbb{R}^{n\times n}|RR^T=I,det(R)=1}\}</script><p>$R^T$ 刻画了一个相反的旋转，这算一个重要性质吧，求逆非常方便。<br>$SO(3)$ 的旋转矩阵有9个量，但一次旋转只有3个自由度，这种表示法是冗余的。<br>旋转矩阵自身带有约束太多：必须是一个单位正交矩阵，且行列式为1。</p>
-<h1 id="四、四元数"><a href="#四、四元数" class="headerlink" title="四、四元数"></a>四、四元数</h1><p>复数由一个实部和一个虚部构成，两个参数可以表示二维平面内所有的旋转，直觉上推广到三个参数就能表示三维旋转，这是错误的，必须4个量才可以表示。<br>在表达三维空间的旋转时，有一种类似复数的代数：四元数。它和复数一样有实部和虚部，表示为</p>
-<script type="math/tex; mode=display">q=[s,v],s=q_{0}\in\mathbb{R}, v=[q_{1},q_{2},q_{3}]^T\in \mathbb{R}^3</script><p>考虑到三维空间需要3个轴，四元数也有3个虚部。三维空间中的点是通过虚四元数来标识的，此时四元数的实部没有任何作用。而在旋转的过程中，这个实部才会起作用，某种意义上来讲，这个四元数的实部不是三维空间的量。<br>更详细的四元数内容可以参考<span class="exturl" data-url="aHR0cHM6Ly93d3cuM2RnZXAuY29tL3VuZGVyc3RhbmRpbmctcXVhdGVybmlvbnMv">https://www.3dgep.com/understanding-quaternions/<i class="fa fa-external-link-alt"></i></span><br>这里关心的只是旋转，旋转向量、旋转矩阵、四元数的相互转化，</p>
-<script type="math/tex; mode=display">q=[cos\frac{\theta}{2},\boldsymbol{n}sin\frac{\theta}{2}]</script><p>这里的 $n$ 表示旋转轴，和旋转向量的轴是一根轴，而这跟轴所表示的向量正是旋转矩阵的特征向量。<br>从旋转向量到旋转矩阵由著名的<code>Rodrigues公式</code>表示。</p>
-<h1 id="五、李群李代数"><a href="#五、李群李代数" class="headerlink" title="五、李群李代数"></a>五、李群李代数</h1><p>$R$ 是旋转矩阵，设$\phi$ 为 $R$ 的导数，反应了 $R$ 的导数性质，故它在 $SO(3)$ 原点附近的正切空间上。同时在 $t_{0}$ 附近，设 $\phi(t_{0})=\phi_{0}$ ，所以有</p>
-<script type="math/tex; mode=display">R(t)=\exp(\phi_{0}^{\wedge}t)
-\Phi=\phi^\wedge=\left[\begin{matrix}0&-\phi_{3}&\phi_{2}\\ \phi_{3}&0&-\phi_{1}\\ -\phi_{2}&\phi_{1}&0\end{matrix}\right]\in\mathbb{R}^{3\times3} （反对称矩阵）</script><script type="math/tex; mode=display">\mathfrak{s}\mathfrak{o}(3)=\{ {\phi\in\mathbb{R}^3,\Phi=\phi^\wedge\in\mathbb{R}^{3\times3}}\}</script><p>李代数对应的反对称矩阵正是李群的导数，而李群李代数存在指数映射，这意味这求导很方便。<br>李群李代数的关系，正是旋转矩阵与旋转向量的关系。旋转向量其实就是李代数，而旋转矩阵构成的集合就是李群。指数映射即是Rodrigues公式。</p>
-<p>任意矩阵的指数映射可以写成一个泰勒展开，但是只有在收敛的情况下才会有结果，其结果仍是一个矩阵。<br>$\exp(\phi^\wedge)=\sum_{n=0}^{\infty}\frac{1}{n!}(\phi^\wedge)^n$ 公式展开，可以证明<code>Rodrigues公式</code>。</p>
-<p>$\mathfrak{s}\mathfrak{o}(3)$ 是由一个三维向量组成的集合，每一个向量对应到一个反对成矩阵，可以表达旋转矩阵的倒导数。每个 $SO(3)$ 中的元素都可以对应一个 $\mathfrak{s}\mathfrak{o}(3)$ 的元素，但是可能存在多个 $\mathfrak{s}\mathfrak{o}(3)$ 中的元素对应到同一个 SO(3) 中的元素。</p>
-<h1 id="六、李代数求导与扰动模型"><a href="#六、李代数求导与扰动模型" class="headerlink" title="六、李代数求导与扰动模型"></a>六、李代数求导与扰动模型</h1><p>BCH公式（Baker-Campbell-Hausdorff）给出</p>
-<script type="math/tex; mode=display">\ln{(\exp(\phi_{1}^\wedge)\exp((\phi_{2}^\wedge))^\vee}= \begin{equation} \left\{ \begin{array}{lc} J_{l} (\phi_{2})^{-1}\phi_{1}+\phi_{2} \\ J_{l} (\phi_{1})^{-1}\phi_{2}+\phi_{1} \end{array} \right. \end{equation}</script><p>左乘与右乘情况不同。<br>其中</p>
-<script type="math/tex; mode=display">\boldsymbol{J}_{l}=\boldsymbol{J}=\frac{sin\theta}{\theta}\boldsymbol{I}+(\frac{1-sin\theta}{\theta})\boldsymbol{a}\boldsymbol{a}^T+\frac{1-cos\theta}{\theta}\boldsymbol{a}^\wedge.</script><p>它的逆</p>
-<script type="math/tex; mode=display">\boldsymbol{J}^{-1}=\frac{\theta}{2}cot\frac{\theta}{2}\boldsymbol{I}+(1-\frac{\theta}{2}cot\frac{\theta}{2})\boldsymbol{a}\boldsymbol{a}^T-\frac{\theta}{2}\boldsymbol{a}^\wedge.</script><p>右乘雅可比仅需要取负号</p>
-<script type="math/tex; mode=display">\boldsymbol{J}_{r}(\phi)=\boldsymbol{J}_{l}(-\phi).</script><p>假设对某一个旋转 $\boldsymbol{R}$ 对应的李代数是 $\phi$ ，给它左乘一个微小的旋转，记作 $ \Delta\boldsymbol{R}$ ，对应的李代数为 $\Delta\phi$ 。那么在李群上得到的结果为 $\Delta\boldsymbol{R}·\boldsymbol{R}$ ，而在李代数上根据BCH近似，为 $\boldsymbol{J}^{-1}(\phi)\Delta\phi+\phi$ ，合并起来可以写成：</p>
-<script type="math/tex; mode=display">\exp(\Delta\phi)\exp(\phi)=\exp\left( \left( \phi+\boldsymbol{J}^{-1}\left( \phi \right)\Delta\phi \right)^\wedge \right)</script><p>李代数求导，因为太菜了，照着书没推下来。还是直接上结论吧。</p>
-<script type="math/tex; mode=display">\frac{\partial(\boldsymbol{R}p)}{\partial\boldsymbol{R}}=\frac{\partial(\exp(\phi^\wedge)p)}{\partial\phi}=-(\boldsymbol{R}p)^\wedge\boldsymbol{J}_{l}</script><p>扰动模型，左乘</p>
-<script type="math/tex; mode=display">\begin{equation} \begin{split} \frac{\partial(\boldsymbol{R}p)}{\partial\boldsymbol{R}}&=\lim\limits_{\varphi\rightarrow0}\frac{\exp(\varphi^\wedge)\exp(\phi^\wedge)\boldsymbol{p}-\exp(\phi^\wedge)\boldsymbol{p}}{\varphi}\\\\ &=\lim\limits_{\varphi\rightarrow0}\frac{(1+\varphi^\wedge)\exp(\phi^\wedge)\boldsymbol{p}-\exp(\phi^\wedge)\boldsymbol{p}}{\varphi}\\\\ &=\lim\limits_{\varphi\rightarrow0}\frac{\varphi^\wedge\boldsymbol{Rp}}{\varphi}=\lim\limits_{\varphi\rightarrow0}\frac{-(\boldsymbol{Rp})^\wedge\varphi}{\varphi}=-(\boldsymbol{Rp})^\wedge. \end{split} \end{equation}</script><p>写在最后：<br>以前学习都是先学习理论，后学习实践。现在顺序倒过来才发现数学作为工具存在的意义。看高博的书更像看综述，能很快建立知识的闭环，对系统有个了解，然后情不自禁地查更多资料，看更多书来填充知识的框架。<br>最后推荐一本好书《旋量代数与李群、李代数》，系统学习一波再来补充这篇文章。</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>线性代数</tag>
-        <tag>机器人</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>配置我的linux</title>
     <url>/2018/02.%E9%85%8D%E7%BD%AE%E6%88%91%E7%9A%84linux/</url>
     <content><![CDATA[<p>这篇博客从我以前的博客搬运过来，备份系统可以使用Remastersys，网上的教程一搜一大把。为了省心，我一直坚持使用ubuntu16.04，以下是系统环境的配置。</p>
@@ -96,6 +60,42 @@ a=[e_{1},e_{2},e_{3}]\left[\begin{matrix}a_{1} \\ a_{2} \\ a_3\end{matrix}\right
       </categories>
       <tags>
         <tag>环境配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>旋转表示法</title>
+    <url>/2018/03.%E6%97%8B%E8%BD%AC%E8%A1%A8%E7%A4%BA%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="一、向量和坐标系"><a href="#一、向量和坐标系" class="headerlink" title="一、向量和坐标系"></a>一、向量和坐标系</h1><p>要想确定一个坐标，首先要建立坐标系。在三维空间中建立的坐标系通常都是两两垂直的，坐标系也叫做线性空间中的一组基 $(e_{1},e_{2},e_{3})$ ，向量 $a$ 在这组基的坐标就可以表示成：    </p>
+<script type="math/tex; mode=display">
+a=[e_{1},e_{2},e_{3}]\left[\begin{matrix}a_{1} \\ a_{2} \\ a_3\end{matrix}\right]=a_{1}e_{1}+a_{2}e_{2}+a_{3}e_{3}</script><p>向量有内积和外积之分，<br>内积表示为 $a^Tb$ ，可以描述为两个向量之间的投影关系。<br>外积表示为 $ab^T$ ，外积大小是两个向量张成四边形的有向面积，之所以有向，是因为外积方向垂直于这两个向量构成的平面，且满足右手定理， $ab^T$ 和 $ba^T$ 会得到大小相同，方向相反的结果。</p>
+<a id="more"></a> 
+<h1 id="二、旋转向量"><a href="#二、旋转向量" class="headerlink" title="二、旋转向量"></a>二、旋转向量</h1><p>向量的外积是可以表示旋转的，假设物体从 $a$ 旋转到 $b$ 转过的角度为 $\theta$ ,那么旋转的方向和大小分别可以用有向面积的正负和大小来表示，它们的外积方向垂直于它们构成的平面（右手定律），长度等于张成四边形的面积。<br>于是，我们可以使用一个向量，其方向与旋转轴一致，长度等于旋转角来描述旋转，表示为 $\theta n$ （$\theta$为旋转角， $n$ 为旋转轴）。在三维空间中，只需要三个这样的向量，并且它们可以构成线性空间中的一组基，就可以描述三维空间中任意的刚体旋转。<br>根据3条旋转轴建立空间坐标，可以略去对转轴的描述，因此，通过一个空间中的三维向量就可以描述旋转，这就是旋转向量。<br>旋转向量通过3个参数控制了6个自由度的旋转。其表示非常紧凑。</p>
+<h1 id="三、旋转矩阵"><a href="#三、旋转矩阵" class="headerlink" title="三、旋转矩阵"></a>三、旋转矩阵</h1><p>旋转向量描述的是物体原地做旋转，给人感觉并不关心坐标系，在使用旋转向量的时候，就默认自己是坐标系的中心了。<br>设某个单位正交基 $(e_{1},e_{2},e_{3})$ 经过一次旋转变成了 $(e_{1}’,e_{2}’,e_{3}’)$ ，那么对于同一个向量 $a$ (注意向量并没有跟随坐标系的旋转而发生运动)，它在两个坐标系下的坐标为 $[a_{1},a_{2},a_{3}]^T$ 和 $[a_{1}’,a_{2}’,a_{3}’]^T$ 。根据坐标定义，有：</p>
+<script type="math/tex; mode=display">[e_{1},e_{2},e_{3}]\left[\begin{matrix}a_{1} \\ a_{2}\\ a_3\end{matrix}\right]=[e_{1}',e_{2}',e_{3}']\left[\begin{matrix}a_{1}' \\ a_{2}' \\ a_{3}'\end{matrix}\right]</script><p>可以得到 $a=Ra’$ ，这里的 矩阵$R$ 称为旋转矩阵。可以把旋转矩阵的集合定义为</p>
+<script type="math/tex; mode=display">SO(n)=\{ {\boldsymbol{R}\in\mathbb{R}^{n\times n}|RR^T=I,det(R)=1}\}</script><p>$R^T$ 刻画了一个相反的旋转，这算一个重要性质吧，求逆非常方便。<br>$SO(3)$ 的旋转矩阵有9个量，但一次旋转只有3个自由度，这种表示法是冗余的。<br>旋转矩阵自身带有约束太多：必须是一个单位正交矩阵，且行列式为1。</p>
+<h1 id="四、四元数"><a href="#四、四元数" class="headerlink" title="四、四元数"></a>四、四元数</h1><p>复数由一个实部和一个虚部构成，两个参数可以表示二维平面内所有的旋转，直觉上推广到三个参数就能表示三维旋转，这是错误的，必须4个量才可以表示。<br>在表达三维空间的旋转时，有一种类似复数的代数：四元数。它和复数一样有实部和虚部，表示为</p>
+<script type="math/tex; mode=display">q=[s,v],s=q_{0}\in\mathbb{R}, v=[q_{1},q_{2},q_{3}]^T\in \mathbb{R}^3</script><p>考虑到三维空间需要3个轴，四元数也有3个虚部。三维空间中的点是通过虚四元数来标识的，此时四元数的实部没有任何作用。而在旋转的过程中，这个实部才会起作用，某种意义上来讲，这个四元数的实部不是三维空间的量。<br>更详细的四元数内容可以参考<span class="exturl" data-url="aHR0cHM6Ly93d3cuM2RnZXAuY29tL3VuZGVyc3RhbmRpbmctcXVhdGVybmlvbnMv">https://www.3dgep.com/understanding-quaternions/<i class="fa fa-external-link-alt"></i></span><br>这里关心的只是旋转，旋转向量、旋转矩阵、四元数的相互转化，</p>
+<script type="math/tex; mode=display">q=[cos\frac{\theta}{2},\boldsymbol{n}sin\frac{\theta}{2}]</script><p>这里的 $n$ 表示旋转轴，和旋转向量的轴是一根轴，而这跟轴所表示的向量正是旋转矩阵的特征向量。<br>从旋转向量到旋转矩阵由著名的<code>Rodrigues公式</code>表示。</p>
+<h1 id="五、李群李代数"><a href="#五、李群李代数" class="headerlink" title="五、李群李代数"></a>五、李群李代数</h1><p>$R$ 是旋转矩阵，设$\phi$ 为 $R$ 的导数，反应了 $R$ 的导数性质，故它在 $SO(3)$ 原点附近的正切空间上。同时在 $t_{0}$ 附近，设 $\phi(t_{0})=\phi_{0}$ ，所以有</p>
+<script type="math/tex; mode=display">R(t)=\exp(\phi_{0}^{\wedge}t)
+\Phi=\phi^\wedge=\left[\begin{matrix}0&-\phi_{3}&\phi_{2}\\ \phi_{3}&0&-\phi_{1}\\ -\phi_{2}&\phi_{1}&0\end{matrix}\right]\in\mathbb{R}^{3\times3} （反对称矩阵）</script><script type="math/tex; mode=display">\mathfrak{s}\mathfrak{o}(3)=\{ {\phi\in\mathbb{R}^3,\Phi=\phi^\wedge\in\mathbb{R}^{3\times3}}\}</script><p>李代数对应的反对称矩阵正是李群的导数，而李群李代数存在指数映射，这意味这求导很方便。<br>李群李代数的关系，正是旋转矩阵与旋转向量的关系。旋转向量其实就是李代数，而旋转矩阵构成的集合就是李群。指数映射即是Rodrigues公式。</p>
+<p>任意矩阵的指数映射可以写成一个泰勒展开，但是只有在收敛的情况下才会有结果，其结果仍是一个矩阵。<br>$\exp(\phi^\wedge)=\sum_{n=0}^{\infty}\frac{1}{n!}(\phi^\wedge)^n$ 公式展开，可以证明<code>Rodrigues公式</code>。</p>
+<p>$\mathfrak{s}\mathfrak{o}(3)$ 是由一个三维向量组成的集合，每一个向量对应到一个反对成矩阵，可以表达旋转矩阵的倒导数。每个 $SO(3)$ 中的元素都可以对应一个 $\mathfrak{s}\mathfrak{o}(3)$ 的元素，但是可能存在多个 $\mathfrak{s}\mathfrak{o}(3)$ 中的元素对应到同一个 SO(3) 中的元素。</p>
+<h1 id="六、李代数求导与扰动模型"><a href="#六、李代数求导与扰动模型" class="headerlink" title="六、李代数求导与扰动模型"></a>六、李代数求导与扰动模型</h1><p>BCH公式（Baker-Campbell-Hausdorff）给出</p>
+<script type="math/tex; mode=display">\ln{(\exp(\phi_{1}^\wedge)\exp((\phi_{2}^\wedge))^\vee}= \begin{equation} \left\{ \begin{array}{lc} J_{l} (\phi_{2})^{-1}\phi_{1}+\phi_{2} \\ J_{l} (\phi_{1})^{-1}\phi_{2}+\phi_{1} \end{array} \right. \end{equation}</script><p>左乘与右乘情况不同。<br>其中</p>
+<script type="math/tex; mode=display">\boldsymbol{J}_{l}=\boldsymbol{J}=\frac{sin\theta}{\theta}\boldsymbol{I}+(\frac{1-sin\theta}{\theta})\boldsymbol{a}\boldsymbol{a}^T+\frac{1-cos\theta}{\theta}\boldsymbol{a}^\wedge.</script><p>它的逆</p>
+<script type="math/tex; mode=display">\boldsymbol{J}^{-1}=\frac{\theta}{2}cot\frac{\theta}{2}\boldsymbol{I}+(1-\frac{\theta}{2}cot\frac{\theta}{2})\boldsymbol{a}\boldsymbol{a}^T-\frac{\theta}{2}\boldsymbol{a}^\wedge.</script><p>右乘雅可比仅需要取负号</p>
+<script type="math/tex; mode=display">\boldsymbol{J}_{r}(\phi)=\boldsymbol{J}_{l}(-\phi).</script><p>假设对某一个旋转 $\boldsymbol{R}$ 对应的李代数是 $\phi$ ，给它左乘一个微小的旋转，记作 $ \Delta\boldsymbol{R}$ ，对应的李代数为 $\Delta\phi$ 。那么在李群上得到的结果为 $\Delta\boldsymbol{R}·\boldsymbol{R}$ ，而在李代数上根据BCH近似，为 $\boldsymbol{J}^{-1}(\phi)\Delta\phi+\phi$ ，合并起来可以写成：</p>
+<script type="math/tex; mode=display">\exp(\Delta\phi)\exp(\phi)=\exp\left( \left( \phi+\boldsymbol{J}^{-1}\left( \phi \right)\Delta\phi \right)^\wedge \right)</script><p>李代数求导，因为太菜了，照着书没推下来。还是直接上结论吧。</p>
+<script type="math/tex; mode=display">\frac{\partial(\boldsymbol{R}p)}{\partial\boldsymbol{R}}=\frac{\partial(\exp(\phi^\wedge)p)}{\partial\phi}=-(\boldsymbol{R}p)^\wedge\boldsymbol{J}_{l}</script><p>扰动模型，左乘</p>
+<script type="math/tex; mode=display">\begin{equation} \begin{split} \frac{\partial(\boldsymbol{R}p)}{\partial\boldsymbol{R}}&=\lim\limits_{\varphi\rightarrow0}\frac{\exp(\varphi^\wedge)\exp(\phi^\wedge)\boldsymbol{p}-\exp(\phi^\wedge)\boldsymbol{p}}{\varphi}\\\\ &=\lim\limits_{\varphi\rightarrow0}\frac{(1+\varphi^\wedge)\exp(\phi^\wedge)\boldsymbol{p}-\exp(\phi^\wedge)\boldsymbol{p}}{\varphi}\\\\ &=\lim\limits_{\varphi\rightarrow0}\frac{\varphi^\wedge\boldsymbol{Rp}}{\varphi}=\lim\limits_{\varphi\rightarrow0}\frac{-(\boldsymbol{Rp})^\wedge\varphi}{\varphi}=-(\boldsymbol{Rp})^\wedge. \end{split} \end{equation}</script><p>写在最后：<br>以前学习都是先学习理论，后学习实践。现在顺序倒过来才发现数学作为工具存在的意义。看高博的书更像看综述，能很快建立知识的闭环，对系统有个了解，然后情不自禁地查更多资料，看更多书来填充知识的框架。<br>最后推荐一本好书《旋量代数与李群、李代数》，系统学习一波再来补充这篇文章。</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>线性代数</tag>
+        <tag>机器人</tag>
       </tags>
   </entry>
   <entry>
@@ -465,50 +465,6 @@ a=[e_{1},e_{2},e_{3}]\left[\begin{matrix}a_{1} \\ a_{2} \\ a_3\end{matrix}\right
       </tags>
   </entry>
   <entry>
-    <title>图像的矩</title>
-    <url>/2018/08.moments/</url>
-    <content><![CDATA[<h1 id="数学中的矩"><a href="#数学中的矩" class="headerlink" title="数学中的矩"></a>数学中的矩</h1><p>矩的本质是数学期望，而期望的计算公式是</p>
-<script type="math/tex; mode=display">E(x)=\int_{-\infty}^{+\infty} xf(x)dx</script><p>其中f(x)是x的概率密度，上面的公式默认了所有变量概率相等。<br><a id="more"></a><br>[定义]：设x，y是离散型随机变量，c为常数，k为正整数，如果E(|x-c|^2)存在，则称其为x关于点c的k阶矩。<br>c=0时，称为k阶原点矩<br>c=E(x)时，成为k阶中心距<br>如果E(|x-c1|^p·|x-c2|^q)存在，则称其为x，y关于点c的p+q阶矩<br>c1=c2=0时，称为p+q阶混合中心矩<br>c1=E(x), c2=E(y)时，称为p+q阶混合中心矩<br>如果x, y是连续型的，则下式称其为x，y关于点c的p+q阶矩</p>
-<script type="math/tex; mode=display">\iint\limits_{p+y} {( x-x_{0})^p\cdot (y-y_{0})^q}dxdy</script><h1 id="图像的矩"><a href="#图像的矩" class="headerlink" title="图像的矩"></a>图像的矩</h1><p>一般的图象距，指的是原点矩。一阶矩和零阶矩就可以计算某个形状的重心，而二阶矩就可以拿来计算形状和方向。<br>(1)普通矩</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>0阶矩</th>
-<th>目标区域的质量（轮廓的面积）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1阶矩</td>
-<td>目标区域的质心（轮廓的几何中心）</td>
-</tr>
-<tr>
-<td>2阶矩</td>
-<td>表示旋转半径</td>
-</tr>
-<tr>
-<td>3阶矩</td>
-<td>描述目标的方位、斜度、和扭曲程度</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>(2)中心矩：构造平移不变性</p>
-<script type="math/tex; mode=display">\bar{x}=\frac{m_{10}}{m_{00}}，\bar{y}=\frac{m_{01}}{m_{00}}</script><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Get Moments for all Contours and the mass centers</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;Moments&gt; <span class="title">mu</span><span class="params">(contours.size())</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;Point2f&gt; <span class="title">mc</span><span class="params">(contours.size())</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; contours.size(); i++ )</span><br><span class="line">&#123;	mu[i] = moments( contours[i], <span class="literal">false</span> ); </span><br><span class="line">	mc[i] = Point2f( mu[i].m10/mu[i].m00 , mu[i].m01/mu[i].m00 );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>(3)归一化中心距：构造尺度不变性</p>
-<script type="math/tex; mode=display">y_{py}=\frac{\mu_{pq}}{\mu_{00}}，r=\frac{p+q+2}{2}，p+q=2,3,...</script><p>(4)Hu矩：构造M1到M7来描述旋转不变性<br>待续。。</p>
-<p>参考<br><span class="exturl" data-url="aHR0cDovL3d3dy5jbmJsb2dzLmNvbS9yb25ueS9wLzM5ODU4MTAuaHRtbA==">http://www.cnblogs.com/ronny/p/3985810.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cDovL3d3dy50azQ0NzkubmV0L0F1Z3VzZGkvYXJ0aWNsZS9kZXRhaWxzLzkwMDA4Mjk=">http://www.tk4479.net/Augusdi/article/details/9000829<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmVuZ2JpbmdjaHVuL2FydGljbGUvZGV0YWlscy82MTk5NTYz">http://blog.csdn.net/fengbingchun/article/details/6199563<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>计算机视觉</category>
-      </categories>
-      <tags>
-        <tag>图像处理</tag>
-        <tag>数学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>图像算子概述</title>
     <url>/2018/07.Constant-scale/</url>
     <content><![CDATA[<p>用机器视觉系统分析未知场景时，计算机并不预先知道图像中物体的尺度。我们需要同时考虑图像在多尺度下的描述，获知感兴趣物体的最佳尺度。如果不同的尺度下都有同样的关键点，那么在不同的尺度的输入图像下就都可以检测出来关键点匹配，也就是尺度不变性。<br><a id="more"></a><br>尺度空间中各尺度图像的模糊程度逐渐变大，能够模拟人在距离目标由近到远时目标在视网膜上的形成过程。<br>尺度越大图像越模糊。</p>
@@ -687,6 +643,50 @@ G_{\sigma_{2}}=\frac{1}{\sqrt{2\pi}}\left( \frac{1}{\sigma_{1}}e^{-(x^2+y^2)/2\s
       </tags>
   </entry>
   <entry>
+    <title>图像的矩</title>
+    <url>/2018/08.moments/</url>
+    <content><![CDATA[<h1 id="数学中的矩"><a href="#数学中的矩" class="headerlink" title="数学中的矩"></a>数学中的矩</h1><p>矩的本质是数学期望，而期望的计算公式是</p>
+<script type="math/tex; mode=display">E(x)=\int_{-\infty}^{+\infty} xf(x)dx</script><p>其中f(x)是x的概率密度，上面的公式默认了所有变量概率相等。<br><a id="more"></a><br>[定义]：设x，y是离散型随机变量，c为常数，k为正整数，如果E(|x-c|^2)存在，则称其为x关于点c的k阶矩。<br>c=0时，称为k阶原点矩<br>c=E(x)时，成为k阶中心距<br>如果E(|x-c1|^p·|x-c2|^q)存在，则称其为x，y关于点c的p+q阶矩<br>c1=c2=0时，称为p+q阶混合中心矩<br>c1=E(x), c2=E(y)时，称为p+q阶混合中心矩<br>如果x, y是连续型的，则下式称其为x，y关于点c的p+q阶矩</p>
+<script type="math/tex; mode=display">\iint\limits_{p+y} {( x-x_{0})^p\cdot (y-y_{0})^q}dxdy</script><h1 id="图像的矩"><a href="#图像的矩" class="headerlink" title="图像的矩"></a>图像的矩</h1><p>一般的图象距，指的是原点矩。一阶矩和零阶矩就可以计算某个形状的重心，而二阶矩就可以拿来计算形状和方向。<br>(1)普通矩</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>0阶矩</th>
+<th>目标区域的质量（轮廓的面积）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1阶矩</td>
+<td>目标区域的质心（轮廓的几何中心）</td>
+</tr>
+<tr>
+<td>2阶矩</td>
+<td>表示旋转半径</td>
+</tr>
+<tr>
+<td>3阶矩</td>
+<td>描述目标的方位、斜度、和扭曲程度</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(2)中心矩：构造平移不变性</p>
+<script type="math/tex; mode=display">\bar{x}=\frac{m_{10}}{m_{00}}，\bar{y}=\frac{m_{01}}{m_{00}}</script><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Get Moments for all Contours and the mass centers</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;Moments&gt; <span class="title">mu</span><span class="params">(contours.size())</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;Point2f&gt; <span class="title">mc</span><span class="params">(contours.size())</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; contours.size(); i++ )</span><br><span class="line">&#123;	mu[i] = moments( contours[i], <span class="literal">false</span> ); </span><br><span class="line">	mc[i] = Point2f( mu[i].m10/mu[i].m00 , mu[i].m01/mu[i].m00 );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(3)归一化中心距：构造尺度不变性</p>
+<script type="math/tex; mode=display">y_{py}=\frac{\mu_{pq}}{\mu_{00}}，r=\frac{p+q+2}{2}，p+q=2,3,...</script><p>(4)Hu矩：构造M1到M7来描述旋转不变性<br>待续。。</p>
+<p>参考<br><span class="exturl" data-url="aHR0cDovL3d3dy5jbmJsb2dzLmNvbS9yb25ueS9wLzM5ODU4MTAuaHRtbA==">http://www.cnblogs.com/ronny/p/3985810.html<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cDovL3d3dy50azQ0NzkubmV0L0F1Z3VzZGkvYXJ0aWNsZS9kZXRhaWxzLzkwMDA4Mjk=">http://www.tk4479.net/Augusdi/article/details/9000829<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZmVuZ2JpbmdjaHVuL2FydGljbGUvZGV0YWlscy82MTk5NTYz">http://blog.csdn.net/fengbingchun/article/details/6199563<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Apriltags</title>
     <url>/2018/09.apriltags/</url>
     <content><![CDATA[<p>AprilTag是一套免费开源的视觉定位系统，他们的主页：<span class="exturl" data-url="aHR0cHM6Ly9hcHJpbC5lZWNzLnVtaWNoLmVkdS9zb2Z0d2FyZS9hcHJpbHRhZy8=">https://april.eecs.umich.edu/software/apriltag/<i class="fa fa-external-link-alt"></i></span><br>根据他们的论文<span class="exturl" data-url="aHR0cHM6Ly9hcHJpbC5lZWNzLnVtaWNoLmVkdS9tZWRpYS9wZGZzL29sc29uMjAxMXRhZ3MucGRm">AprilTag - A robust and flexible visual fiducial system, ICRA 2011<i class="fa fa-external-link-alt"></i></span>，AprilTag主要的贡献是：</p>
@@ -757,55 +757,6 @@ h_{02}=sR_xT_x \\
       </categories>
       <tags>
         <tag>机器人</tag>
-        <tag>图像处理</tag>
-        <tag>Opencv</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于图的图像分割</title>
-    <url>/2018/10.Graph-Based-Image-Segmentation/</url>
-    <content><![CDATA[<p>Graph-Based Segmentation 是经典的图像分割算法。论文：<span class="exturl" data-url="aHR0cDovL2NzLmJyb3duLmVkdS9wZW9wbGUvcGZlbHplbnMvcGFwZXJzL3NlZy1pamN2LnBkZg==">Efficient Graph-Based Image Segmentation，IJCV 2004，MIT<i class="fa fa-external-link-alt"></i></span>，作者 Pedro F. Felzenszwalb.</p>
-<a id="more"></a> 
-<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><p>图是由顶点集$V$（vertices）和边集$E$（edges）组成，表示为$G=(V,E)$，顶点$v \in V$，在本文中即为单个的像素点，连接一对顶点的边$(v_i,v_j)\in E$具有权重$w(v_i,v_j)$，本文中的意义为顶点之间的不相似度，所用的是无向图。</p>
-<p><img src="/img/Graph-Based/g.png" alt="">树：特殊的图，图中任意两个顶点，都有路径相连接，但是没有回路。如上图中加粗的边所连接而成的图。如果看成一团乱连的珠子，只保留树中的珠子和连线，那么随便选个珠子，都能把这棵树中所有的珠子都提起来。如果，i和h这条边也保留下来，那么顶点h,i,c,f,g就构成了一个回路。</p>
-<p>最小生成树（MST, minimum spanning tree）：特殊的树，给定需要连接的顶点，选择边权之和最小的树。上图即是一棵MST<br><img src="/img/Graph-Based/t.png" alt="">本文中，初始化时每一个像素点都是一个顶点，然后逐渐合并得到一个区域，确切地说是连接这个区域中的像素点的一个MST。如图，棕色圆圈为顶点，线段为边，合并棕色顶点所生成的MST，对应的就是一个分割区域。分割后的结果其实就是森林。</p>
-<h1 id="相似性"><a href="#相似性" class="headerlink" title="相似性"></a>相似性</h1><p>既然是聚类算法，那应该依据何种规则判定何时该合二为一，何时该继续划清界限呢？<br>对于孤立的两个像素点，所不同的是颜色，自然就用颜色的距离来衡量两点的相似性，本文中是使用RGB的距离，即</p>
-<script type="math/tex; mode=display">\sqrt{(r_1-r_2)^2+(g_1-g_2)^2+(b_1-b_2)^2}</script><p>当然也可以用perceptually uniform的Luv或者Lab色彩空间，对于灰度图像就只能使用亮度值了，此外，还可以先使用纹理特征滤波，再计算距离，比如，先做Census Transform再计算Hamming distance距离。</p>
-<h1 id="自适应阈值"><a href="#自适应阈值" class="headerlink" title="自适应阈值"></a>自适应阈值</h1><p>上面提到应该用亮度值之差来衡量两个像素点之间的差异性。对于两个区域（子图）或者一个区域和一个像素点的相似性，最简单的方法即只考虑连接二者的边的不相似度。</p>
-<p><img src="/img/Graph-Based/t2.png" alt="">已经形成了棕色和绿色两个区域，现在通过紫色边来判断这两个区域是否合并。那么我们就可以设定一个阈值，当两个像素之间的差异（即不相似度）小于该值时，合二为一。迭代合并，最终就会合并成一个个区域，效果类似于区域生长.</p>
-<p><img src="/img/Graph-Based/pic1.png" alt="">显然，对上面这张图如果设置全局阈值并不合适，那么自然就得用自适应阈值。对于p区该阈值要特别小，s区稍大，h区巨大。</p>
-<blockquote>
-<p>In this section we define a predicate, D, for evaluating whether or not there is evidence for a boundary between two components in a segmentation (two regions of an image).This predicate is based on measuring the dissimilarity between elements along the boundary of the two components relative to a measure of the dissimilarity among neighboring elements within each of the two components. The resulting predicate compares the inter-component differences to the within component differences and is thereby adaptive with respect to the local characteristics of the data.<br>We define the internal difference of a component C ⊆ V to be the largest weight in the minimum spanning tree of the component, MST(C, E). That is,</p>
-<script type="math/tex; mode=display">Int(C)=\max\limits_{e\in MST(C,E)}w(e)</script><p>One intuition underlying this measure is that a given component C only remains connected when edges of weight at least Int(C) are considered.<br>We define the difference between two components C1, C2 ⊆ V to be the minimum weight edge connecting the two components. That is,</p>
-<script type="math/tex; mode=display">Diff(C_1,C_2)=\min\limits_{v_i\in C_1,v_j\in C_2,(v_i,v_j)\in E}w((v_i,v_j))</script><p>If there is no edge connecting C1 and C2 we let Dif(C1, C2) = ∞. This measure of difference could in principle be problematic, because it reflects only the smallest edge weight between two components. In practice we have found that the measure works quite well in spite of this apparent limitation. Moreover, changing the definition to use the median weight, or some other quantile, in order to make it more robust to outliers, makes the problem of finding a good segmentation NP-hard, as discussed in the Appendix. Thus a small change to the segmentation criterion vastly changes the difficulty of the problem.</p>
-<p>The region comparison predicate evaluates if there is evidence for a boundary between a pair or components by checking if the difference between the components, Dif(C1, C2), is large relative to the internal difference within at least one of the components, Int(C1) and Int(C2). A threshold function is used to control the degree to which the difference between components must be larger than minimum internal difference. We define the pairwise comparison predicate as, </p>
-<script type="math/tex; mode=display">D(C_1,C_2)=
-\begin{equation}
-\left\{
-\begin{array}{lr}
-true，diff(C_1,C_2)>MInt(C_1,C_2)
-\\
-flase，otherwise
-\end{array}
-\right.
-\end{equation}</script><p>where the minimum internal difference, MInt, is defined as,</p>
-<script type="math/tex; mode=display">MInt(C_1,C_2)=min(Int(C_1)+\tau(C_1),Int(C_2)+\tau(C_2))</script><p>The threshold function τ controls the degree to which the difference between two components must be greater than their internal differences in order for there to be evidence of a boundary between them (D to be true). For small components, Int(C) is not a good estimate of the local characteristics of the data. In the extreme case, when |C| = 1, Int(C) = 0. Therefore, we use a threshold function based on the size of the component, </p>
-<script type="math/tex; mode=display">\tau (C)=k/|C|</script><p>where |C| denotes the size of C, and k is some constant parameter. That is, for small components we require stronger evidence for a boundary. In practice k sets a scale of observation, in that a larger k causes a preference for larger components. Note, however, that k is not a minimum component size. Smaller components are allowed when there is a sufficiently large difference between neighboring components.</p>
-<p>Any non-negative function of a single component can be used for τ without changing the algorithmic results in Section 4. For instance, it is possible to have the segmentation method prefer components of certain shapes, by defining a τ which is large for components that do not fit some desired shape and small for ones that do. This would cause the segmentation algorithm to aggressively merge components that are not of the desired shape. Such a shape preference could be as weak as preferring components that are not long and thin (e.g., using a ratio of perimeter to area) or as strong as preferring components that match a particular shape model. Note that the result of this would not solely be components of the desired shape, however for any two neighboring components one of them would be of the desired shape. </p>
-</blockquote>
-<h1 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h1><p>Step 1: 计算每一个像素点与其8邻域或4邻域的不相似度。</p>
-<p><img src="/img/Graph-Based/pic3.png" alt="">Step 2: 将边按照不相似度non-decreasing排列（从小到大）排序得到$e_1,e_2,……,e_N$。<br>Step 3: 选择$e_1$<br>Step 4: 对当前选择的边$e_n$进行合并判断。设其所连接的顶点为$(v_i,v_j)$。如果满足合并条件：</p>
-<ol>
-<li>$v_i,v_j$不属于同一个区域$Id(V_i)\ne Id(v_j)$</li>
-<li>不相似度不大于二者内部的不相似度。$w_{i,j}\leq Mint(C_i,C_j)$则执行Step 5，否则执行Step 6。</li>
-</ol>
-<p>Step 5: 更新阈值以及类标号。<br>更新类标号：将$Id(v_i),Id(v_j)$的类标号统一为$Id(v_i)$的标号。<br>更新该类的不相似度阈值为：$w_{i,j}+\frac{k}{|c_i|+|c_j|}$。<br>注意：由于不相似度小的边先合并，所以，$w_{i,j}$即为当前合并后的区域的最大的边，即$Int(C_i\cup C_j)=w_{i,j}$。<br>Step 6: 如果$n\leq N$，则按照排好的顺序，选择下一条边转到Step 4，否则结束。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3R0cmFuc3Bvc2l0aW9uL2FydGljbGUvZGV0YWlscy8zODAyNDU1Nw==">https://blog.csdn.net/ttransposition/article/details/38024557<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>计算机视觉</category>
-      </categories>
-      <tags>
         <tag>图像处理</tag>
         <tag>Opencv</tag>
       </tags>
@@ -942,6 +893,68 @@ P_{k+1}
       </tags>
   </entry>
   <entry>
+    <title>基于图的图像分割</title>
+    <url>/2018/10.Graph-Based-Image-Segmentation/</url>
+    <content><![CDATA[<p>Graph-Based Segmentation 是经典的图像分割算法。论文：<span class="exturl" data-url="aHR0cDovL2NzLmJyb3duLmVkdS9wZW9wbGUvcGZlbHplbnMvcGFwZXJzL3NlZy1pamN2LnBkZg==">Efficient Graph-Based Image Segmentation，IJCV 2004，MIT<i class="fa fa-external-link-alt"></i></span>，作者 Pedro F. Felzenszwalb.</p>
+<a id="more"></a> 
+<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><p>图是由顶点集$V$（vertices）和边集$E$（edges）组成，表示为$G=(V,E)$，顶点$v \in V$，在本文中即为单个的像素点，连接一对顶点的边$(v_i,v_j)\in E$具有权重$w(v_i,v_j)$，本文中的意义为顶点之间的不相似度，所用的是无向图。</p>
+<p><img src="/img/Graph-Based/g.png" alt="">树：特殊的图，图中任意两个顶点，都有路径相连接，但是没有回路。如上图中加粗的边所连接而成的图。如果看成一团乱连的珠子，只保留树中的珠子和连线，那么随便选个珠子，都能把这棵树中所有的珠子都提起来。如果，i和h这条边也保留下来，那么顶点h,i,c,f,g就构成了一个回路。</p>
+<p>最小生成树（MST, minimum spanning tree）：特殊的树，给定需要连接的顶点，选择边权之和最小的树。上图即是一棵MST<br><img src="/img/Graph-Based/t.png" alt="">本文中，初始化时每一个像素点都是一个顶点，然后逐渐合并得到一个区域，确切地说是连接这个区域中的像素点的一个MST。如图，棕色圆圈为顶点，线段为边，合并棕色顶点所生成的MST，对应的就是一个分割区域。分割后的结果其实就是森林。</p>
+<h1 id="相似性"><a href="#相似性" class="headerlink" title="相似性"></a>相似性</h1><p>既然是聚类算法，那应该依据何种规则判定何时该合二为一，何时该继续划清界限呢？<br>对于孤立的两个像素点，所不同的是颜色，自然就用颜色的距离来衡量两点的相似性，本文中是使用RGB的距离，即</p>
+<script type="math/tex; mode=display">\sqrt{(r_1-r_2)^2+(g_1-g_2)^2+(b_1-b_2)^2}</script><p>当然也可以用perceptually uniform的Luv或者Lab色彩空间，对于灰度图像就只能使用亮度值了，此外，还可以先使用纹理特征滤波，再计算距离，比如，先做Census Transform再计算Hamming distance距离。</p>
+<h1 id="自适应阈值"><a href="#自适应阈值" class="headerlink" title="自适应阈值"></a>自适应阈值</h1><p>上面提到应该用亮度值之差来衡量两个像素点之间的差异性。对于两个区域（子图）或者一个区域和一个像素点的相似性，最简单的方法即只考虑连接二者的边的不相似度。</p>
+<p><img src="/img/Graph-Based/t2.png" alt="">已经形成了棕色和绿色两个区域，现在通过紫色边来判断这两个区域是否合并。那么我们就可以设定一个阈值，当两个像素之间的差异（即不相似度）小于该值时，合二为一。迭代合并，最终就会合并成一个个区域，效果类似于区域生长.</p>
+<p><img src="/img/Graph-Based/pic1.png" alt="">显然，对上面这张图如果设置全局阈值并不合适，那么自然就得用自适应阈值。对于p区该阈值要特别小，s区稍大，h区巨大。</p>
+<blockquote>
+<p>In this section we define a predicate, D, for evaluating whether or not there is evidence for a boundary between two components in a segmentation (two regions of an image).This predicate is based on measuring the dissimilarity between elements along the boundary of the two components relative to a measure of the dissimilarity among neighboring elements within each of the two components. The resulting predicate compares the inter-component differences to the within component differences and is thereby adaptive with respect to the local characteristics of the data.<br>We define the internal difference of a component C ⊆ V to be the largest weight in the minimum spanning tree of the component, MST(C, E). That is,</p>
+<script type="math/tex; mode=display">Int(C)=\max\limits_{e\in MST(C,E)}w(e)</script><p>One intuition underlying this measure is that a given component C only remains connected when edges of weight at least Int(C) are considered.<br>We define the difference between two components C1, C2 ⊆ V to be the minimum weight edge connecting the two components. That is,</p>
+<script type="math/tex; mode=display">Diff(C_1,C_2)=\min\limits_{v_i\in C_1,v_j\in C_2,(v_i,v_j)\in E}w((v_i,v_j))</script><p>If there is no edge connecting C1 and C2 we let Dif(C1, C2) = ∞. This measure of difference could in principle be problematic, because it reflects only the smallest edge weight between two components. In practice we have found that the measure works quite well in spite of this apparent limitation. Moreover, changing the definition to use the median weight, or some other quantile, in order to make it more robust to outliers, makes the problem of finding a good segmentation NP-hard, as discussed in the Appendix. Thus a small change to the segmentation criterion vastly changes the difficulty of the problem.</p>
+<p>The region comparison predicate evaluates if there is evidence for a boundary between a pair or components by checking if the difference between the components, Dif(C1, C2), is large relative to the internal difference within at least one of the components, Int(C1) and Int(C2). A threshold function is used to control the degree to which the difference between components must be larger than minimum internal difference. We define the pairwise comparison predicate as, </p>
+<script type="math/tex; mode=display">D(C_1,C_2)=
+\begin{equation}
+\left\{
+\begin{array}{lr}
+true，diff(C_1,C_2)>MInt(C_1,C_2)
+\\
+flase，otherwise
+\end{array}
+\right.
+\end{equation}</script><p>where the minimum internal difference, MInt, is defined as,</p>
+<script type="math/tex; mode=display">MInt(C_1,C_2)=min(Int(C_1)+\tau(C_1),Int(C_2)+\tau(C_2))</script><p>The threshold function τ controls the degree to which the difference between two components must be greater than their internal differences in order for there to be evidence of a boundary between them (D to be true). For small components, Int(C) is not a good estimate of the local characteristics of the data. In the extreme case, when |C| = 1, Int(C) = 0. Therefore, we use a threshold function based on the size of the component, </p>
+<script type="math/tex; mode=display">\tau (C)=k/|C|</script><p>where |C| denotes the size of C, and k is some constant parameter. That is, for small components we require stronger evidence for a boundary. In practice k sets a scale of observation, in that a larger k causes a preference for larger components. Note, however, that k is not a minimum component size. Smaller components are allowed when there is a sufficiently large difference between neighboring components.</p>
+<p>Any non-negative function of a single component can be used for τ without changing the algorithmic results in Section 4. For instance, it is possible to have the segmentation method prefer components of certain shapes, by defining a τ which is large for components that do not fit some desired shape and small for ones that do. This would cause the segmentation algorithm to aggressively merge components that are not of the desired shape. Such a shape preference could be as weak as preferring components that are not long and thin (e.g., using a ratio of perimeter to area) or as strong as preferring components that match a particular shape model. Note that the result of this would not solely be components of the desired shape, however for any two neighboring components one of them would be of the desired shape. </p>
+</blockquote>
+<h1 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h1><p>Step 1: 计算每一个像素点与其8邻域或4邻域的不相似度。</p>
+<p><img src="/img/Graph-Based/pic3.png" alt="">Step 2: 将边按照不相似度non-decreasing排列（从小到大）排序得到$e_1,e_2,……,e_N$。<br>Step 3: 选择$e_1$<br>Step 4: 对当前选择的边$e_n$进行合并判断。设其所连接的顶点为$(v_i,v_j)$。如果满足合并条件：</p>
+<ol>
+<li>$v_i,v_j$不属于同一个区域$Id(V_i)\ne Id(v_j)$</li>
+<li>不相似度不大于二者内部的不相似度。$w_{i,j}\leq Mint(C_i,C_j)$则执行Step 5，否则执行Step 6。</li>
+</ol>
+<p>Step 5: 更新阈值以及类标号。<br>更新类标号：将$Id(v_i),Id(v_j)$的类标号统一为$Id(v_i)$的标号。<br>更新该类的不相似度阈值为：$w_{i,j}+\frac{k}{|c_i|+|c_j|}$。<br>注意：由于不相似度小的边先合并，所以，$w_{i,j}$即为当前合并后的区域的最大的边，即$Int(C_i\cup C_j)=w_{i,j}$。<br>Step 6: 如果$n\leq N$，则按照排好的顺序，选择下一条边转到Step 4，否则结束。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3R0cmFuc3Bvc2l0aW9uL2FydGljbGUvZGV0YWlscy8zODAyNDU1Nw==">https://blog.csdn.net/ttransposition/article/details/38024557<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>图像处理</tag>
+        <tag>Opencv</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pods_cmake</title>
+    <url>/2018/13.pods-cmake/</url>
+    <content><![CDATA[<p>Apriltags的CMakeLists.txt中出现了一行pods_install_executables()，这并不是标准的CMake写法，项目中有cmake/pods.cmake文件，里面写道：Macros to simplify compliance with the pods build policies.</p>
+<p>关于pods的资料不多，目前我对它的理解是一组基于CMake语法的宏，本身与CMake并没有任何区别。cmake/pods.cmake的内容可以参考：<br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1JvYm90TG9jb21vdGlvbi9jbWFrZS9ibG9iL21hc3Rlci9wb2RzLmNtYWtl">https://github.com/RobotLocomotion/cmake/blob/master/pods.cmake<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2Vmb3JnZS5uZXQvcHJvamVjdHMvcG9kcy8=">https://sourceforge.net/projects/pods/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2Vmb3JnZS5uZXQvcC9wb2RzL3dpa2kvUG9kc1Rvb2wv">https://sourceforge.net/p/pods/wiki/PodsTool/<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>工具链</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Kalman with eigen</title>
     <url>/2018/12.matrix-decomposition/</url>
     <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21oZXJiL2thbG1hblQ=">https://github.com/mherb/kalmanT<i class="fa fa-external-link-alt"></i></span> 是一个基于eigin3的Kalman-Filter，包含了Extended Kalman Filter (EKF)、Square Root Extended Kalman Filter (SR-EKF)、Unscented Kalman Filter (UKF)、Square Root Unscented Kalman Filter (SR-UKF)，4种Kalman filter。</p>
@@ -961,19 +974,6 @@ P_{k+1}
       </categories>
       <tags>
         <tag>线性代数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pods_cmake</title>
-    <url>/2018/13.pods-cmake/</url>
-    <content><![CDATA[<p>Apriltags的CMakeLists.txt中出现了一行pods_install_executables()，这并不是标准的CMake写法，项目中有cmake/pods.cmake文件，里面写道：Macros to simplify compliance with the pods build policies.</p>
-<p>关于pods的资料不多，目前我对它的理解是一组基于CMake语法的宏，本身与CMake并没有任何区别。cmake/pods.cmake的内容可以参考：<br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1JvYm90TG9jb21vdGlvbi9jbWFrZS9ibG9iL21hc3Rlci9wb2RzLmNtYWtl">https://github.com/RobotLocomotion/cmake/blob/master/pods.cmake<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2Vmb3JnZS5uZXQvcHJvamVjdHMvcG9kcy8=">https://sourceforge.net/projects/pods/<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2Vmb3JnZS5uZXQvcC9wb2RzL3dpa2kvUG9kc1Rvb2wv">https://sourceforge.net/p/pods/wiki/PodsTool/<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>编程</category>
-      </categories>
-      <tags>
-        <tag>工具链</tag>
       </tags>
   </entry>
   <entry>
@@ -1338,6 +1338,20 @@ p(y)\sim N(\alpha^T\mu,\alpha^T\Sigma\alpha)</script>]]></content>
       </tags>
   </entry>
   <entry>
+    <title>Cpp-Taskflow</title>
+    <url>/2018/20.cpp-taskflow/</url>
+    <content><![CDATA[<p>A fast C++ header-only library to help you quickly write parallel programs with complex task dependencies.<br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NwcC10YXNrZmxvdy9jcHAtdGFza2Zsb3c=">https://github.com/cpp-taskflow/cpp-taskflow<i class="fa fa-external-link-alt"></i></span></p>
+<a id="more"></a>
+<h2 id="升级Cmake"><a href="#升级Cmake" class="headerlink" title="升级Cmake"></a>升级Cmake</h2><p>指定安装路径进行安装<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /user/bin/cmake-3.8/cmake-x.xx.x</span><br><span class="line">./bootstrap --prefix=/user/bin/cmake-x.x/cmake-x.xx.x</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure><br>另一种安装方案：不使用./bootstrap，而通过 ./configure执行<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">sudo ln -sf /....../....../cmake-3.12.4/bin/*  /usr/bin/</span><br></pre></td></tr></table></figure></p>
+<h2 id="升级编译器gcc-g"><a href="#升级编译器gcc-g" class="headerlink" title="升级编译器gcc/g++"></a>升级编译器gcc/g++</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ubuntu-toolchain-r/test</span><br><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc-7</span><br><span class="line">sudo apt-get install g++-7</span><br><span class="line"></span><br><span class="line">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100</span><br><span class="line">sudo update-alternatives --config gcc</span><br><span class="line"></span><br><span class="line">sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100</span><br><span class="line">sudo update-alternatives --config g++</span><br><span class="line"></span><br><span class="line">gcc -v</span><br><span class="line">g++ -v</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Fisher</title>
     <url>/2018/18.Fisher/</url>
     <content><![CDATA[<p>线性判别方法linear discriminant analysis, LDA, R.A.</p>
@@ -1423,17 +1437,86 @@ J(W)=Tr{(W^TS_WW)^{-1}(W^TS_WW)}</script><p>其中，权值由$\{S_W^{-1}S_B\}$�
       </tags>
   </entry>
   <entry>
-    <title>Cpp-Taskflow</title>
-    <url>/2018/20.cpp-taskflow/</url>
-    <content><![CDATA[<p>A fast C++ header-only library to help you quickly write parallel programs with complex task dependencies.<br><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NwcC10YXNrZmxvdy9jcHAtdGFza2Zsb3c=">https://github.com/cpp-taskflow/cpp-taskflow<i class="fa fa-external-link-alt"></i></span></p>
+    <title>特征提取与选择</title>
+    <url>/2018/22.feature-select/</url>
+    <content><![CDATA[<p>对分类器设计来说，使用什么样的特征描述事物，也就是说使用什么样的特征空间是个很重要的问题。这个问题称之为描述量的选择问题，意思是指保留哪些描述量，删除哪些描述量的问题。<br>本章节研究对特征空间进行改造,目的在于提高其某方面的性能，因此又称特征的优化问题。</p>
 <a id="more"></a>
-<h2 id="升级Cmake"><a href="#升级Cmake" class="headerlink" title="升级Cmake"></a>升级Cmake</h2><p>指定安装路径进行安装<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /user/bin/cmake-3.8/cmake-x.xx.x</span><br><span class="line">./bootstrap --prefix=/user/bin/cmake-x.x/cmake-x.xx.x</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure><br>另一种安装方案：不使用./bootstrap，而通过 ./configure执行<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">sudo ln -sf /....../....../cmake-3.12.4/bin/*  /usr/bin/</span><br></pre></td></tr></table></figure></p>
-<h2 id="升级编译器gcc-g"><a href="#升级编译器gcc-g" class="headerlink" title="升级编译器gcc/g++"></a>升级编译器gcc/g++</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ubuntu-toolchain-r/test</span><br><span class="line">sudo apt-get update </span><br><span class="line">sudo apt-get install gcc-7</span><br><span class="line">sudo apt-get install g++-7</span><br><span class="line"></span><br><span class="line">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100</span><br><span class="line">sudo update-alternatives --config gcc</span><br><span class="line"></span><br><span class="line">sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100</span><br><span class="line">sudo update-alternatives --config g++</span><br><span class="line"></span><br><span class="line">gcc -v</span><br><span class="line">g++ -v</span><br></pre></td></tr></table></figure>]]></content>
+<hr>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>对特征空间的改造、优化,主要的目的是降维，即把维数高的特征空间改成维数低的特征空间，降维主要有两种途径：</p>
+<ul>
+<li>一种是<code>筛选</code>掉一些次要的特征，问题在于如何确定特征的重要性，以及如何筛选。</li>
+<li>另一种方法是使用<code>变换</code>的手段，限定在线性变换的方法上，通过变换来实现降维。</li>
+</ul>
+<h2 id="特征的选择与提取"><a href="#特征的选择与提取" class="headerlink" title="特征的选择与提取"></a>特征的选择与提取</h2><ul>
+<li>分析各种特征的有效性并选出最有代表性的特征是模式识别系统设计的关键步骤。</li>
+<li>降低特征维数在很多情况下是有效设计分类器的重要课题。</li>
+</ul>
+<h2 id="特征空间的优化"><a href="#特征空间的优化" class="headerlink" title="特征空间的优化"></a>特征空间的优化</h2><p>对初始的特征空间进行优化是为了降维。即初始的特征空间维数较高。能否改成一个维数较低的空间，称为优化。</p>
+<h3 id="特征优化两种方法"><a href="#特征优化两种方法" class="headerlink" title="特征优化两种方法"></a>特征优化两种方法</h3><p>假设有D维特征向量空间，$y={y1,y2,…yD}$:</p>
+<ol>
+<li><code>特征选择</code>是指从原有的D维特征空间，删去一些特征描述量，从而得到精简后的特征空间。在这个特征空间中，样本由降维后的d维的特征向量描述：$x={x1,x2,…xd}，d &lt; D$。由于x只是y的一个子集，因此每个分量$x_i$必然能在 原特征集中找到其对应的描述量$x_i=y_j$。</li>
+<li><code>特征提取</code>则是找到一个映射关系：$A:Y→X$，使新样本特征描述维数比原维数降低。其中每个分量$x_i$是原特征向量各分量的函数，即$x_i=W^Ty_i$。</li>
+</ol>
+<hr>
+<h1 id="类别可分离性判据"><a href="#类别可分离性判据" class="headerlink" title="类别可分离性判据"></a>类别可分离性判据</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>特征选择或特征提取任务是从n个特征中求出对分类最有效的m个特征(m＜n)。</p>
+<ol>
+<li>对于<code>特征选择</code>来讲，从n个特征中选择出m个特征， 有$C_n^m$种组合方式。哪一种特征组的分类效果最好？这需要有一个比较标准，即需要一个定量的准则来衡量选择结果的好坏。</li>
+<li>对于<code>特征提取</code>来讲，把n维特征向量变换 成m维特征向量，有各种变换。哪一种变换得到的m维特征向量对分类最有效？需要用一个准则来衡量。</li>
+</ol>
+<p>用以定量检验分类性能的准则称为类别可分性准则$J_{ij}$, 需要满足以下几点：</p>
+<ol>
+<li>与错误概率有单调关系，这样使准则取最大值的效果一般来说其错误率也较小。</li>
+<li>度量特性：<ul>
+<li>$J_{ij} &gt; 0$，当$i\ne j$时</li>
+<li>$J_{ij} = 0$，当$i = j$时</li>
+<li>$J_{ij} = J_{ji}$</li>
+<li>这里$J_{ij}$是第$i$类和第$j$类的可分性准则函数，$J_{ij}$越大，两类的分离程度就越大。</li>
+</ul>
+</li>
+<li>单调性：即加入新的特征时候，准则函数不减小。</li>
+<li>当特征独立时有可加性。</li>
+</ol>
+<h2 id="基于距离的可分性判据"><a href="#基于距离的可分性判据" class="headerlink" title="基于距离的可分性判据"></a>基于距离的可分性判据</h2><p>基于距离的可分性判据的实质是<code>Fisher准则</code>的延伸，即综合考虑不同类样本的<code>类内聚集程度</code>与<code>类间离散程度</code>这两个因素。<br>判据的优化体现出降维特征空间较好地体现类内密集。一些不能体现类间分隔开的特征很可能被排除掉了。<br>基于距离度量是常用来进行分类的重要依据，因为一般情况下同类物体在特征空间<code>呈聚类状态</code>，即从总体上说同类物体内各样本由于具有共性，因此类内样本间距离应比跨类样本间距离小。<br><code>Fisher准则</code>是以使类间距离尽可能大同时又保持类内距离较小这一种原理为基础的。同样在特征选择与特征提取中也使用类似的原理，这一类被称为基于距离的可分性判据。<br>为了度量类内、类间的距离，可用其他方法描述方法，即描述样本的离散程度的方法。</p>
+<script type="math/tex; mode=display">
+J_d(x)=\frac{1}{2}\sum_{i=1}^{c}{P_i}\sum_{i=1}^{c}{P_j}\frac{1}{n_in_j}\sum_{k=1}^{n_i}{}\sum_{l=1}^{n_j}{\delta(x_k^{(i)},x_l^{(j)})}</script><p>各类样本之间的距离越大，则类别可分性越大。因此，可以用各类样本之间的距离的平均值作为可分性准则：</p>
+<script type="math/tex; mode=display">
+J_d(x)=\sum_{i=1}^{c}{P_i}\left[ \frac{1}{n_i}\sum_{k=1}^{n_i}{\left( x_k^{(i)}-m_i \right)^T\left( x_k^{(i)}-m_i \right)+(m_i-m)^T(m_i-m)} \right]</script><p>即</p>
+<script type="math/tex; mode=display">
+\tilde{S_b}=\sum_{i=1}^{c}{P_i}(m_i-m)(m_i-m)^T \\
+\tilde{S_w}=\sum_{i=1}^{c}{P_i}\frac{1}{n_i}\sum_{k=1}^{n_i}{\left( x_k^{(i)}-m_i \right)\left( x_k^{(i)}-m_i \right)^T} \\
+J_d(x) = tr(\tilde{S_w}+\tilde{S_b})</script><p>优点：<br>定义直观、易于实现，因此比较常用。<br>缺点：<br>没有直接考虑样本的分布情况，很难在理论上建立起它们与分类错误率的联系，而且当两类样本的分布有重叠时，这些判据不能反映重叠的情况。</p>
+<h2 id="基于概率分布的可分性判据"><a href="#基于概率分布的可分性判据" class="headerlink" title="基于概率分布的可分性判据"></a>基于概率分布的可分性判据</h2><p>显然不同类别在特征空间x中的分布要尽可能不一样，则分类就比较容易，通俗的讲，则不同类别在特征空间的不同区域聚集，则分类就容易，它们重迭的程度越低，越有别于分类。<br>为了考查在不同特征下两类样本概率分布的情况，定义了基于概率分布的可分性判据。<br>分布密度的交叠程度可用$p(X|\omega_1)$及$p(X|\omega_2)$这两个分布密度函数之间的距离$J_p$来度量，距离$J_p$有以下几个共同点：</p>
+<ol>
+<li>$J_p$是非负，即$J_p \leq 0$</li>
+<li>当两类完全不交迭时$J_p$达到其最大值</li>
+<li>当两类分布密度相同时，$J_p = 0$</li>
+</ol>
+<p>常用的概率距离度量：</p>
+<ol>
+<li>Bhattacharyya距离（巴氏距离）：<ul>
+<li>$J_B=-\ln \int_{}^{}\left[ p(x|\omega_1)p(x|\omega_2) \right]^{1/2}dx$</li>
+<li>显然，当$p(X|\omega_1)=p(X|\omega_2)$对所有X值成立时$J_B＝0$，而当两者完全不交迭时$J_B$无穷大。巴氏距离与错误率的上界有直接关系，因此$J_B$不仅用来对特征空间进行降维优化，而且也用来对分类器的错误率作出估计。</li>
+</ul>
+</li>
+<li>Chernoff（切诺夫）界限：<ul>
+<li>$J_C=-\ln \int_{}^{}p^s(x|\omega_1)p^{1-s}(x|\omega_2) dx$</li>
+<li>其中S取$[0，1]$区间的一个参数，显然在$S=0.5$时就变为$J_B$式，因此$J_B$是$J_C$的一个特例。</li>
+</ul>
+</li>
+<li>散度：区分$i，j$两类总的平均信息<ul>
+<li>$w_i，w_j$对数似然比：$l_{ij}(x)=p(x|\omega_i)/p(x|\omega_j)$</li>
+<li>对$w_i$类的可分信息：$I_{ij}(x)=E(l_{ij}(x)]=\int_{x}p(x|\omega_i)In(p(x|\omega_i)/p(x|\omega_j))dx$</li>
+<li>对$w_j$类的可分信息：$I_{ji}(x)=E(l_{ji}(x)]=\int_{x}p(x|\omega_j)In(p(x|\omega_j)/p(x|\omega_i))dx$</li>
+<li>散度$J_d$为两类平均可分信息之和：$J_D{x}=I_{ij}+I_{ji}=\int_{x}[p(x|\omega_i)-p(x|\omega_j)In(p(x|\omega_i)/p(x|\omega_j))dx$</li>
+</ul>
+</li>
+</ol>
+]]></content>
       <categories>
-        <category>编程</category>
+        <category>模式识别</category>
       </categories>
       <tags>
-        <tag>编程</tag>
+        <tag>模式识别</tag>
       </tags>
   </entry>
   <entry>
@@ -1705,89 +1788,6 @@ M1\oplus M2
       </categories>
       <tags>
         <tag>编程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>特征提取与选择</title>
-    <url>/2018/22.feature-select/</url>
-    <content><![CDATA[<p>对分类器设计来说，使用什么样的特征描述事物，也就是说使用什么样的特征空间是个很重要的问题。这个问题称之为描述量的选择问题，意思是指保留哪些描述量，删除哪些描述量的问题。<br>本章节研究对特征空间进行改造,目的在于提高其某方面的性能，因此又称特征的优化问题。</p>
-<a id="more"></a>
-<hr>
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>对特征空间的改造、优化,主要的目的是降维，即把维数高的特征空间改成维数低的特征空间，降维主要有两种途径：</p>
-<ul>
-<li>一种是<code>筛选</code>掉一些次要的特征，问题在于如何确定特征的重要性，以及如何筛选。</li>
-<li>另一种方法是使用<code>变换</code>的手段，限定在线性变换的方法上，通过变换来实现降维。</li>
-</ul>
-<h2 id="特征的选择与提取"><a href="#特征的选择与提取" class="headerlink" title="特征的选择与提取"></a>特征的选择与提取</h2><ul>
-<li>分析各种特征的有效性并选出最有代表性的特征是模式识别系统设计的关键步骤。</li>
-<li>降低特征维数在很多情况下是有效设计分类器的重要课题。</li>
-</ul>
-<h2 id="特征空间的优化"><a href="#特征空间的优化" class="headerlink" title="特征空间的优化"></a>特征空间的优化</h2><p>对初始的特征空间进行优化是为了降维。即初始的特征空间维数较高。能否改成一个维数较低的空间，称为优化。</p>
-<h3 id="特征优化两种方法"><a href="#特征优化两种方法" class="headerlink" title="特征优化两种方法"></a>特征优化两种方法</h3><p>假设有D维特征向量空间，$y={y1,y2,…yD}$:</p>
-<ol>
-<li><code>特征选择</code>是指从原有的D维特征空间，删去一些特征描述量，从而得到精简后的特征空间。在这个特征空间中，样本由降维后的d维的特征向量描述：$x={x1,x2,…xd}，d &lt; D$。由于x只是y的一个子集，因此每个分量$x_i$必然能在 原特征集中找到其对应的描述量$x_i=y_j$。</li>
-<li><code>特征提取</code>则是找到一个映射关系：$A:Y→X$，使新样本特征描述维数比原维数降低。其中每个分量$x_i$是原特征向量各分量的函数，即$x_i=W^Ty_i$。</li>
-</ol>
-<hr>
-<h1 id="类别可分离性判据"><a href="#类别可分离性判据" class="headerlink" title="类别可分离性判据"></a>类别可分离性判据</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>特征选择或特征提取任务是从n个特征中求出对分类最有效的m个特征(m＜n)。</p>
-<ol>
-<li>对于<code>特征选择</code>来讲，从n个特征中选择出m个特征， 有$C_n^m$种组合方式。哪一种特征组的分类效果最好？这需要有一个比较标准，即需要一个定量的准则来衡量选择结果的好坏。</li>
-<li>对于<code>特征提取</code>来讲，把n维特征向量变换 成m维特征向量，有各种变换。哪一种变换得到的m维特征向量对分类最有效？需要用一个准则来衡量。</li>
-</ol>
-<p>用以定量检验分类性能的准则称为类别可分性准则$J_{ij}$, 需要满足以下几点：</p>
-<ol>
-<li>与错误概率有单调关系，这样使准则取最大值的效果一般来说其错误率也较小。</li>
-<li>度量特性：<ul>
-<li>$J_{ij} &gt; 0$，当$i\ne j$时</li>
-<li>$J_{ij} = 0$，当$i = j$时</li>
-<li>$J_{ij} = J_{ji}$</li>
-<li>这里$J_{ij}$是第$i$类和第$j$类的可分性准则函数，$J_{ij}$越大，两类的分离程度就越大。</li>
-</ul>
-</li>
-<li>单调性：即加入新的特征时候，准则函数不减小。</li>
-<li>当特征独立时有可加性。</li>
-</ol>
-<h2 id="基于距离的可分性判据"><a href="#基于距离的可分性判据" class="headerlink" title="基于距离的可分性判据"></a>基于距离的可分性判据</h2><p>基于距离的可分性判据的实质是<code>Fisher准则</code>的延伸，即综合考虑不同类样本的<code>类内聚集程度</code>与<code>类间离散程度</code>这两个因素。<br>判据的优化体现出降维特征空间较好地体现类内密集。一些不能体现类间分隔开的特征很可能被排除掉了。<br>基于距离度量是常用来进行分类的重要依据，因为一般情况下同类物体在特征空间<code>呈聚类状态</code>，即从总体上说同类物体内各样本由于具有共性，因此类内样本间距离应比跨类样本间距离小。<br><code>Fisher准则</code>是以使类间距离尽可能大同时又保持类内距离较小这一种原理为基础的。同样在特征选择与特征提取中也使用类似的原理，这一类被称为基于距离的可分性判据。<br>为了度量类内、类间的距离，可用其他方法描述方法，即描述样本的离散程度的方法。</p>
-<script type="math/tex; mode=display">
-J_d(x)=\frac{1}{2}\sum_{i=1}^{c}{P_i}\sum_{i=1}^{c}{P_j}\frac{1}{n_in_j}\sum_{k=1}^{n_i}{}\sum_{l=1}^{n_j}{\delta(x_k^{(i)},x_l^{(j)})}</script><p>各类样本之间的距离越大，则类别可分性越大。因此，可以用各类样本之间的距离的平均值作为可分性准则：</p>
-<script type="math/tex; mode=display">
-J_d(x)=\sum_{i=1}^{c}{P_i}\left[ \frac{1}{n_i}\sum_{k=1}^{n_i}{\left( x_k^{(i)}-m_i \right)^T\left( x_k^{(i)}-m_i \right)+(m_i-m)^T(m_i-m)} \right]</script><p>即</p>
-<script type="math/tex; mode=display">
-\tilde{S_b}=\sum_{i=1}^{c}{P_i}(m_i-m)(m_i-m)^T \\
-\tilde{S_w}=\sum_{i=1}^{c}{P_i}\frac{1}{n_i}\sum_{k=1}^{n_i}{\left( x_k^{(i)}-m_i \right)\left( x_k^{(i)}-m_i \right)^T} \\
-J_d(x) = tr(\tilde{S_w}+\tilde{S_b})</script><p>优点：<br>定义直观、易于实现，因此比较常用。<br>缺点：<br>没有直接考虑样本的分布情况，很难在理论上建立起它们与分类错误率的联系，而且当两类样本的分布有重叠时，这些判据不能反映重叠的情况。</p>
-<h2 id="基于概率分布的可分性判据"><a href="#基于概率分布的可分性判据" class="headerlink" title="基于概率分布的可分性判据"></a>基于概率分布的可分性判据</h2><p>显然不同类别在特征空间x中的分布要尽可能不一样，则分类就比较容易，通俗的讲，则不同类别在特征空间的不同区域聚集，则分类就容易，它们重迭的程度越低，越有别于分类。<br>为了考查在不同特征下两类样本概率分布的情况，定义了基于概率分布的可分性判据。<br>分布密度的交叠程度可用$p(X|\omega_1)$及$p(X|\omega_2)$这两个分布密度函数之间的距离$J_p$来度量，距离$J_p$有以下几个共同点：</p>
-<ol>
-<li>$J_p$是非负，即$J_p \leq 0$</li>
-<li>当两类完全不交迭时$J_p$达到其最大值</li>
-<li>当两类分布密度相同时，$J_p = 0$</li>
-</ol>
-<p>常用的概率距离度量：</p>
-<ol>
-<li>Bhattacharyya距离（巴氏距离）：<ul>
-<li>$J_B=-\ln \int_{}^{}\left[ p(x|\omega_1)p(x|\omega_2) \right]^{1/2}dx$</li>
-<li>显然，当$p(X|\omega_1)=p(X|\omega_2)$对所有X值成立时$J_B＝0$，而当两者完全不交迭时$J_B$无穷大。巴氏距离与错误率的上界有直接关系，因此$J_B$不仅用来对特征空间进行降维优化，而且也用来对分类器的错误率作出估计。</li>
-</ul>
-</li>
-<li>Chernoff（切诺夫）界限：<ul>
-<li>$J_C=-\ln \int_{}^{}p^s(x|\omega_1)p^{1-s}(x|\omega_2) dx$</li>
-<li>其中S取$[0，1]$区间的一个参数，显然在$S=0.5$时就变为$J_B$式，因此$J_B$是$J_C$的一个特例。</li>
-</ul>
-</li>
-<li>散度：区分$i，j$两类总的平均信息<ul>
-<li>$w_i，w_j$对数似然比：$l_{ij}(x)=p(x|\omega_i)/p(x|\omega_j)$</li>
-<li>对$w_i$类的可分信息：$I_{ij}(x)=E(l_{ij}(x)]=\int_{x}p(x|\omega_i)In(p(x|\omega_i)/p(x|\omega_j))dx$</li>
-<li>对$w_j$类的可分信息：$I_{ji}(x)=E(l_{ji}(x)]=\int_{x}p(x|\omega_j)In(p(x|\omega_j)/p(x|\omega_i))dx$</li>
-<li>散度$J_d$为两类平均可分信息之和：$J_D{x}=I_{ij}+I_{ji}=\int_{x}[p(x|\omega_i)-p(x|\omega_j)In(p(x|\omega_i)/p(x|\omega_j))dx$</li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>模式识别</category>
-      </categories>
-      <tags>
-        <tag>模式识别</tag>
       </tags>
   </entry>
   <entry>
@@ -2318,89 +2318,6 @@ theta_op:
       </tags>
   </entry>
   <entry>
-    <title>给毕设配环境</title>
-    <url>/2021/36.%E7%BB%99%E6%AF%95%E8%AE%BE%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h2 id="我的硬件环境"><a href="#我的硬件环境" class="headerlink" title="我的硬件环境"></a>我的硬件环境</h2><ul>
-<li>Home-pc</li>
-<li>Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz   3.70 GHz</li>
-<li>DDR3 1600HMz Dual 16.00 GB</li>
-<li>Nvidia Geforce GTX1660 Super 6G GDDR6</li>
-</ul>
-<h2 id="我的软件环境"><a href="#我的软件环境" class="headerlink" title="我的软件环境"></a>我的软件环境</h2><ul>
-<li>Ubuntu 20.04（系统自带python3.8.5）</li>
-<li>NV Driver 450</li>
-<li>CUDA 10.1 — 243_426.00</li>
-<li>cudnn v7.6.5（因为网速原因，暂时没装，考虑到只是替换文件，或许对环境不影响，于是就跳过这一步了，慢慢下载，来日再装）</li>
-<li>Miniconda3-py38_4.9.2-Linux-x86_64<ul>
-<li>opencv</li>
-<li>pytorch</li>
-</ul>
-</li>
-</ul>
-<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ul>
-<li>CUDA：<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9jdWRhLXRvb2xraXQtYXJjaGl2ZQ==">https://developer.nvidia.com/cuda-toolkit-archive<i class="fa fa-external-link-alt"></i></span></li>
-<li>cuDNN：<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9yZHAvY3Vkbm4tYXJjaGl2ZQ==">https://developer.nvidia.com/rdp/cudnn-archive<i class="fa fa-external-link-alt"></i></span></li>
-<li>Miniconda：<span class="exturl" data-url="aHR0cHM6Ly9taXJyb3JzLnR1bmEudHNpbmdodWEuZWR1LmNuL2FuYWNvbmRhL21pbmljb25kYS8=">https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<p>安装过程一波三折，先说显卡驱动问题，CSDN博客90%都是错误的，Ubuntu20.04安装系统过程中如果勾选了安装第三方驱动，那么会把显卡驱动直接装好（至少我在第一次折腾的时候是这样，之后的几次都会陷入循环登录Bug）</p>
-<h3 id="驱动"><a href="#驱动" class="headerlink" title="驱动"></a>驱动</h3><p>回归到安装Ubuntu的老思路，断网、不装第三方驱动，这样是最快的。此时系统调用的是核显驱动（我很好奇如果是无核显的CPU会怎么样，回想起这4年来接触Ubuntu的场景，我似乎从未在不带核显的机子上安装过Ubuntu，显卡驱动的Bug的众多解释中，其中一条便是和核显有关，建议早日转manjaro）</p>
-<p>进入系统以后，按照流程换源，然后在 Software Update 里鼠标勾选安装 NVIDIA 显卡驱动即可，注意系统不要设置成自动登录，按照网上的说法之一，循环登录和该设置有关。我没有时间和精力去验证。至少在安装Ubuntu20.04这一步，如果是安装过程联网安装NVIDIA显卡驱动，那么自动登录和密码登录没有区别，该循环Bug还是循环Bug，该正常启动还是正常启动。（于是，我非常好奇我第一次安装Ubuntu是如何做到自动登录+联网安装显卡驱动的）</p>
-<p>Manjaro的口碑这两年非常好，按照网友们的说法，Manjaro对显卡驱动的支持不知道比Ubuntu高到哪里去了。但是我从来没用过Arch系的Linux，目前在自己的备用机上装了Manjaro还在感受当中，等玩熟练了，或许会转Manjaro。（我在Ubuntu16.04停留了几年之久，如今用上了Ubuntu20.04，感觉已经比以前好了许多）</p>
-<h3 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h3><p>很久之前安装过CUDA，依稀记得在终端界面下复古的文字说明，以及刻在DNA里的“弹出询问是否安装显卡驱动？一定要输入No”。这次安装CUDA，终端界面是及其先进的GUI，比以前清晰很多。至于为什么安装CUDA不要再安装显卡驱动，说法很多，我没有亲自验证过。</p>
-<p>因为网速原因，没有选择CUDA11.1_450，然而选择了CUDA10.1，下载还挺快的。但是cuDnn因为网速原因，一直没下载成功，只好暂时跳过了。</p>
-<p>这一部分请参考：</p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9jeWZlbmcuc2NpZW5jZS8yMDIwLzA1LzAyL3VidW50dS1pbnN0YWxsLW52aWRpYS1kcml2ZXItY3VkYS1jdWRubi1zdWl0cy8=">https://cyfeng.science/2020/05/02/ubuntu-install-nvidia-driver-cuda-cudnn-suits/<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm52aWRpYS5jb20vY3VkYS9jdWRhLWluc3RhbGxhdGlvbi1ndWlkZS1saW51eC9pbmRleC5odG1s">https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<p>里面有提到gcc版本兼容问题，其实Ubuntu系统自带gcc版本高于CUDA已经是老生长谈，甚至误传已久的问题了。考虑到Linux和CUDA都在不停更新，建议只看官方文档。</p>
-<h2 id="Conda"><a href="#Conda" class="headerlink" title="Conda"></a>Conda</h2><p>我是先练手安装的Win10，后安装的Ubuntu20.04。在原来的Win10 上，Anaconda遇到了一些难以描述的问题（和openssl有关，总之不要太推崇Anaconda这个东西，包管理太乱），于是我直接卸载干净，选择了miniConda，世界清净了。</p>
-<p>在Ubuntu20.04上我也选择了miniConda，等于就是一个只含有python的环境，啥额外的软件包都没有，很干净，体积很小。现在回头仔细想，我已经使用Vscode开发项目很久了，python也用的是VScode，唯一留在Anconda的理由就是有个jupyter、jupyter NoteBook。其实miniConda可以安装一切，又到再装也一样。（在这里吐槽一下Ancodna的卸载速度，可能是因为软件包全是小文件，卸载极慢）</p>
-<h3 id="安装路径"><a href="#安装路径" class="headerlink" title="安装路径"></a>安装路径</h3><p>我要吐槽一下miniconda的默认安装路径是<code>/root/miniconda/</code>，这样其实不是不行，但是用vscode的时候，因为不是root权限，没办法选择到root目录下的python解释器，于是我硬着头皮用root权限来运行vscode这么一个代码编辑器，发现不行，至少需要折腾一下，这种方法是在是太不优雅了。于是我卸掉了<code>/root/miniconda/</code>，重新装了一次，按照惯用路径，选择<code>/opt/miniconda/</code>（安装过程中会询问你选择路径）。</p>
-<h3 id="镜像源"><a href="#镜像源" class="headerlink" title="镜像源"></a>镜像源</h3><p>我自以为从清华源下载的miniconda默认的源就是<code>https://mirrors.tuna.tsinghua.edu.cn/</code>，这么想没什么不对，但是唯一的源在装软件的时候就遇到问题，是源的问题。查看conda源，使用命令：<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda info</span><br></pre></td></tr></table></figure><br>编辑conda源，使用命令：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim ~&#x2F;.condarc</span><br></pre></td></tr></table></figure><br>里面大概长这样：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;main&#x2F;</span><br><span class="line">  - https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;anaconda&#x2F;cloud&#x2F;conda-forge&#x2F;</span><br><span class="line">  - https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;free&#x2F;</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: true</span><br></pre></td></tr></table></figure><br>顺带一提，我放弃<code>/root/miniconda/</code>的另一个原因就是因为<code>~/.condarc</code>，这应该是个用户级的文件，但是如果把conda装在<code>/root/miniconda/</code>，就得编辑对应的root级文件才算写入环境，然后从此终端打开干点儿啥，都得是root。vscode无法选择到<code>/root/miniconda/bin/python</code>大概率是因为这个原因。我的理解并不完善，大概率错误。有时间专门学习Linux系统知识再把这一块儿补上。</p>
-<p>目前有中科大源<code>https://mirrors.ustc.edu.cn/</code>和清华源<code>https://mirrors.tuna.tsinghua.edu.cn/</code>可以用，末尾需要加上：</p>
-<ul>
-<li>/anaconda/pkgs/main/</li>
-<li>/anaconda/pkgs/free/</li>
-<li>/anaconda/cloud/</li>
-</ul>
-<p>这个可以网页打开镜像源的文件目录，自己看着添加进去，尽量不要抄别人的博客，可能会错。我参考的是：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1amlhbGFvZXIvYXJ0aWNsZS9kZXRhaWxzLzg0OTc3Nzk2">https://blog.csdn.net/wujialaoer/article/details/84977796<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Pytoch"><a href="#Pytoch" class="headerlink" title="Pytoch"></a>Pytoch</h3><p>值得一提的是，你可以从网页端把对应的包下载下来，然后离线安装。比如我在安装pytorch的时候，死活下载不下来，要么慢，那么卡住。于是我用浏览器打开网页找到对应的包<code>pytorch-1.7.1-py3.8_cuda10.1.243_cudnn7.6.3_0.tar.bz2</code>下载，发现清华源的下载逻辑和百度云很像，会限制你的流量和网速，我以40MB/s的网速下载几秒就会断，必须等一两分钟，才允许你继续下载。盲猜是为了减小服务器负担。</p>
-<p>离线安装可以输入：<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda install --offline pytorch-1.7.1-py3.8_cuda10.1.243_cudnn7.6.3_0.tar.bz2</span><br></pre></td></tr></table></figure><br>但是这样装完以后，需要再输入一次在线安装，离线安装的包要进行一次验证。在线安装输入：<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio cudatoolkit = 10.1 -c pytorch</span><br></pre></td></tr></table></figure><br>这句话原话是：</p>
-<blockquote>
-<p>注意： Python 3.9用户将需要添加’-c = conda-forge<br>进行安装 conda install pytorch torchvision torchaudio cudatoolkit = 10.1 -c pytorch</p>
-</blockquote>
-<p>类似的安装指南，请官网找 <span class="exturl" data-url="aHR0cHM6Ly9weXRvcmNoLm9yZy/vvIzkuI3opoHmioTljZrlrqLjgILkuI3mmK/or7TliKvkurrnmoTljZrlrqLlhpnnmoTkuI3lr7nvvIzogIzmmK/phY3njq/looPov5nnp43kuovmg4XvvIzkvaDnnIvliKvkurrnmoTljZrlrqLlsLHmmK/liLvoiJ/msYLliZHvvIzljbPkvb/ov5nnr4fljZrlrqLlnKjlh6DkuKrmnIjjgIHlh6DlubTliY3ml6Dmr5TmraPnoa7jgILkvYbmmK/njrDlnKjlroPlsLHkuI3lr7nkuobvvIzlj6/og73lj6rpnIDopoHlvq7osIPmn5DkuKrmjIfku6TvvIzkvYbkvaDnhafmkKzlsLHmmK/kvJrlh7rplJnjgII=">https://pytorch.org/，不要抄博客。不是说别人的博客写的不对，而是配环境这种事情，你看别人的博客就是刻舟求剑，即使这篇博客在几个月、几年前无比正确。但是现在它就不对了，可能只需要微调某个指令，但你照搬就是会出错。<i class="fa fa-external-link-alt"></i></span></p>
-<p>使用国内源，就把<code>-c pytorch</code>去掉，一开始我并不知道<code>-c pytorch</code>依然会使用国外官方源，但是敲完这行指令，会显示出每个要安装的软件包来自的源，所有的包都是清华源，但是pytorch这几个源和上面一堆长得不一样，就足以引起思考了。盲猜在安装过程中，显示安装包所来自的源可以通过<code>~/.condarc</code>的<code>show_channel_urls: true</code>来控制显示or不显示，我没有验证过，也没有看过文档，仅仅是经验推测。</p>
-<p>在安装过程中，遇到的其他犄角旮旯的问题，大多数都可以从这里找到：<span class="exturl" data-url="aHR0cHM6Ly90b29scy1wbGF0Zm9ybS1ndWlkZS5yZWFkdGhlZG9jcy5pby96aF9DTi9sYXRlc3Qv">https://tools-platform-guide.readthedocs.io/zh_CN/latest/<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Opencv"><a href="#Opencv" class="headerlink" title="Opencv"></a>Opencv</h3><p>其实，到了上一步已经可以用了，CUDA + CuDnn + Pytorch 三件套已经OK。但是项目需要用到opencv，于是就必须继续往下装。这一步遇到了很多蛋疼的问题：源有问题、conda有问题、opencv有问题、python有问题。最后总结：我有问题。</p>
-<p>其实有了conda，安装任何东西都是<code>conda insatll xxx</code>，无脑一行指令的事情。但是当一切方法都不管用，我提供一个不是办法的办法：打开 Links for opencv-python：<span class="exturl" data-url="aHR0cHM6Ly9weXBpLnR1bmEudHNpbmdodWEuZWR1LmNuL3NpbXBsZS9vcGVuY3YtcHl0aG9uLw==">https://pypi.tuna.tsinghua.edu.cn/simple/opencv-python/<i class="fa fa-external-link-alt"></i></span> 找到对应的版本下载，比如<code>opencv_python-4.2.0.34-cp38-cp38-manylinux1_x86_64.whl</code></p>
-<p>注意：opencv是有版本的，比如opencv3.x、opencv4.x，python也是有版本的，在这里，请选择和你conda内的python一样的版本，也就是python3.8，另外注意是linux_x86_64，这三个版本都对了才能装。话说回来：</p>
-<ul>
-<li>CUDA和cuDNN之间也是有版本对应关系的，写全了就是 cudnn v7.6.5 for CUDA10.1</li>
-<li>显卡驱动和CUDA之间也有对应关系，比如CUDA 10.1_243_426.00，要求显卡驱动版本不低于243</li>
-</ul>
-<p>最后，怎么装这个<code>opencv_python-4.2.0.34-cp38-cp38-manylinux1_x86_64.whl</code>？用<code>pip install</code>，而且注意了，是给conda的python装，不是给系统自带的python装。</p>
-<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><p>配环境最优雅的方式： <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9kYTFjN2RjNDIxN2E=">https://www.jianshu.com/p/da1c7dc4217a<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="ST-GCN-搭建"><a href="#ST-GCN-搭建" class="headerlink" title="ST-GCN 搭建"></a>ST-GCN 搭建</h2><p>参考：</p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8xNDM5Njk4NzY=">https://zhuanlan.zhihu.com/p/143969876<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucHl0aG9uZi5jbi9yZWFkLzEwNDAxMg==">https://www.pythonf.cn/read/104012<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="ST-GCN-理解"><a href="#ST-GCN-理解" class="headerlink" title="ST-GCN 理解"></a>ST-GCN 理解</h2><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzI3NjY2L2FydGljbGUvZGV0YWlscy84NDY0MDU0OQ==">https://blog.csdn.net/qq_41727666/article/details/84640549<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzU0NTA0NDcxL2Fuc3dlci82MTEyMjI4NjY=">https://www.zhihu.com/question/54504471/answer/611222866<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly96aG9lZi5jb20vMjAxOS8wOC8yNC8xNF9TVC1HY24v">https://zhoef.com/2019/08/24/14_ST-Gcn/<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>配环境</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用神经网络进行机器学习</title>
     <url>/2020/35.network/</url>
     <content><![CDATA[<h2 id="数据介绍"><a href="#数据介绍" class="headerlink" title="数据介绍"></a>数据介绍</h2><p>本次练习所用的数据集有5000个训练样本，每个样本对应于20x20大小的灰度图像。这些训练样本包括了9-0共十个数字的手写图像。这些样本中每个像素都用浮点数表示。加载得到的数据中，每幅图像都被展开为一个400维的向量，构成了数据矩阵中的一行。完整的训练数据是一个5000x400的矩阵，其每一行为一个训练样本（数字的手写图像）。数据中，对应于数字”0”的图像被标记为”10”，而数字”1”到”9”按照其自然顺序被分别标记为”1”到”9”。数据集保存在<code>NN_data.mat</code>.<br><img src="/img/PRML/data-array.png" alt="image"></p>
@@ -2586,6 +2503,100 @@ Training Set Accuracy: 0.9592
       </categories>
       <tags>
         <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>给毕设配环境</title>
+    <url>/2021/36.%E7%BB%99%E6%AF%95%E8%AE%BE%E9%85%8D%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h2 id="我的硬件环境"><a href="#我的硬件环境" class="headerlink" title="我的硬件环境"></a>我的硬件环境</h2><ul>
+<li>Home-pc</li>
+<li>Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz   3.70 GHz</li>
+<li>DDR3 1600HMz Dual 16.00 GB</li>
+<li>Nvidia Geforce GTX1660 Super 6G GDDR6</li>
+</ul>
+<h2 id="我的软件环境"><a href="#我的软件环境" class="headerlink" title="我的软件环境"></a>我的软件环境</h2><ul>
+<li>Ubuntu 20.04（系统自带python3.8.5）</li>
+<li>NV Driver 450</li>
+<li>CUDA 10.1 — 243_426.00</li>
+<li>cudnn v7.6.5（因为网速原因，暂时没装，考虑到只是替换文件，或许对环境不影响，于是就跳过这一步了，慢慢下载，来日再装）</li>
+<li>Miniconda3-py38_4.9.2-Linux-x86_64<ul>
+<li>opencv</li>
+<li>pytorch</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><ul>
+<li>CUDA：<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9jdWRhLXRvb2xraXQtYXJjaGl2ZQ==">https://developer.nvidia.com/cuda-toolkit-archive<i class="fa fa-external-link-alt"></i></span></li>
+<li>cuDNN：<span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIubnZpZGlhLmNvbS9yZHAvY3Vkbm4tYXJjaGl2ZQ==">https://developer.nvidia.com/rdp/cudnn-archive<i class="fa fa-external-link-alt"></i></span></li>
+<li>Miniconda：<span class="exturl" data-url="aHR0cHM6Ly9taXJyb3JzLnR1bmEudHNpbmdodWEuZWR1LmNuL2FuYWNvbmRhL21pbmljb25kYS8=">https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p>安装过程一波三折，先说显卡驱动问题，CSDN博客90%都是错误的，Ubuntu20.04安装系统过程中如果勾选了安装第三方驱动，那么会把显卡驱动直接装好（至少我在第一次折腾的时候是这样，之后的几次都会陷入循环登录Bug）</p>
+<h3 id="驱动"><a href="#驱动" class="headerlink" title="驱动"></a>驱动</h3><p>回归到安装Ubuntu的老思路，断网、不装第三方驱动，这样是最快的。此时系统调用的是核显驱动（我很好奇如果是无核显的CPU会怎么样，回想起这4年来接触Ubuntu的场景，我似乎从未在不带核显的机子上安装过Ubuntu，显卡驱动的Bug的众多解释中，其中一条便是和核显有关，建议早日转manjaro）</p>
+<p>进入系统以后，按照流程换源，然后在 Software Update 里鼠标勾选安装 NVIDIA 显卡驱动即可，注意系统不要设置成自动登录，按照网上的说法之一，循环登录和该设置有关。我没有时间和精力去验证。至少在安装Ubuntu20.04这一步，如果是安装过程联网安装NVIDIA显卡驱动，那么自动登录和密码登录没有区别，该循环Bug还是循环Bug，该正常启动还是正常启动。（于是，我非常好奇我第一次安装Ubuntu是如何做到自动登录+联网安装显卡驱动的）</p>
+<p>Manjaro的口碑这两年非常好，按照网友们的说法，Manjaro对显卡驱动的支持不知道比Ubuntu高到哪里去了。但是我从来没用过Arch系的Linux，目前在自己的备用机上装了Manjaro还在感受当中，等玩熟练了，或许会转Manjaro。（我在Ubuntu16.04停留了几年之久，如今用上了Ubuntu20.04，感觉已经比以前好了许多）</p>
+<h3 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h3><p>很久之前安装过CUDA，依稀记得在终端界面下复古的文字说明，以及刻在DNA里的“弹出询问是否安装显卡驱动？一定要输入No”。这次安装CUDA，终端界面是及其先进的GUI，比以前清晰很多。至于为什么安装CUDA不要再安装显卡驱动，说法很多，我没有亲自验证过。</p>
+<p>因为网速原因，没有选择CUDA11.1_450，然而选择了CUDA10.1，下载还挺快的。但是cuDnn因为网速原因，一直没下载成功，只好暂时跳过了。</p>
+<p>这一部分请参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jeWZlbmcuc2NpZW5jZS8yMDIwLzA1LzAyL3VidW50dS1pbnN0YWxsLW52aWRpYS1kcml2ZXItY3VkYS1jdWRubi1zdWl0cy8=">https://cyfeng.science/2020/05/02/ubuntu-install-nvidia-driver-cuda-cudnn-suits/<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm52aWRpYS5jb20vY3VkYS9jdWRhLWluc3RhbGxhdGlvbi1ndWlkZS1saW51eC9pbmRleC5odG1s">https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p>里面有提到gcc版本兼容问题，其实Ubuntu系统自带gcc版本高于CUDA已经是老生长谈，甚至误传已久的问题了。考虑到Linux和CUDA都在不停更新，建议只看官方文档。</p>
+<h2 id="Conda"><a href="#Conda" class="headerlink" title="Conda"></a>Conda</h2><p>我是先练手安装的Win10，后安装的Ubuntu20.04。在原来的Win10 上，Anaconda遇到了一些难以描述的问题（和openssl有关，总之不要太推崇Anaconda这个东西，包管理太乱），于是我直接卸载干净，选择了miniConda，世界清净了。</p>
+<p>在Ubuntu20.04上我也选择了miniConda，等于就是一个只含有python的环境，啥额外的软件包都没有，很干净，体积很小。现在回头仔细想，我已经使用Vscode开发项目很久了，python也用的是VScode，唯一留在Anconda的理由就是有个jupyter、jupyter NoteBook。其实miniConda可以安装一切，又到再装也一样。（在这里吐槽一下Ancodna的卸载速度，可能是因为软件包全是小文件，卸载极慢）</p>
+<h3 id="安装路径"><a href="#安装路径" class="headerlink" title="安装路径"></a>安装路径</h3><p>我要吐槽一下miniconda的默认安装路径是<code>/root/miniconda/</code>，这样其实不是不行，但是用vscode的时候，因为不是root权限，没办法选择到root目录下的python解释器，于是我硬着头皮用root权限来运行vscode这么一个代码编辑器，发现不行，至少需要折腾一下，这种方法是在是太不优雅了。于是我卸掉了<code>/root/miniconda/</code>，重新装了一次，按照惯用路径，选择<code>/opt/miniconda/</code>（安装过程中会询问你选择路径）。</p>
+<h3 id="镜像源"><a href="#镜像源" class="headerlink" title="镜像源"></a>镜像源</h3><p>我自以为从清华源下载的miniconda默认的源就是<code>https://mirrors.tuna.tsinghua.edu.cn/</code>，这么想没什么不对，但是唯一的源在装软件的时候就遇到问题，是源的问题。查看conda源，使用命令：<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda info</span><br></pre></td></tr></table></figure><br>编辑conda源，使用命令：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim ~&#x2F;.condarc</span><br></pre></td></tr></table></figure><br>里面大概长这样：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;main&#x2F;</span><br><span class="line">  - https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;anaconda&#x2F;cloud&#x2F;conda-forge&#x2F;</span><br><span class="line">  - https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;anaconda&#x2F;pkgs&#x2F;free&#x2F;</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: true</span><br></pre></td></tr></table></figure><br>顺带一提，我放弃<code>/root/miniconda/</code>的另一个原因就是因为<code>~/.condarc</code>，这应该是个用户级的文件，但是如果把conda装在<code>/root/miniconda/</code>，就得编辑对应的root级文件才算写入环境，然后从此终端打开干点儿啥，都得是root。vscode无法选择到<code>/root/miniconda/bin/python</code>大概率是因为这个原因。我的理解并不完善，大概率错误。有时间专门学习Linux系统知识再把这一块儿补上。</p>
+<p>目前有中科大源<code>https://mirrors.ustc.edu.cn/</code>和清华源<code>https://mirrors.tuna.tsinghua.edu.cn/</code>可以用，末尾需要加上：</p>
+<ul>
+<li>/anaconda/pkgs/main/</li>
+<li>/anaconda/pkgs/free/</li>
+<li>/anaconda/cloud/</li>
+</ul>
+<p>这个可以网页打开镜像源的文件目录，自己看着添加进去，尽量不要抄别人的博客，可能会错。我参考的是：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1amlhbGFvZXIvYXJ0aWNsZS9kZXRhaWxzLzg0OTc3Nzk2">https://blog.csdn.net/wujialaoer/article/details/84977796<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Pytoch"><a href="#Pytoch" class="headerlink" title="Pytoch"></a>Pytoch</h3><p>值得一提的是，你可以从网页端把对应的包下载下来，然后离线安装。比如我在安装pytorch的时候，死活下载不下来，要么慢，那么卡住。于是我用浏览器打开网页找到对应的包<code>pytorch-1.7.1-py3.8_cuda10.1.243_cudnn7.6.3_0.tar.bz2</code>下载，发现清华源的下载逻辑和百度云很像，会限制你的流量和网速，我以40MB/s的网速下载几秒就会断，必须等一两分钟，才允许你继续下载。盲猜是为了减小服务器负担。</p>
+<p>离线安装可以输入：<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda install --offline pytorch-1.7.1-py3.8_cuda10.1.243_cudnn7.6.3_0.tar.bz2</span><br></pre></td></tr></table></figure><br>但是这样装完以后，需要再输入一次在线安装，离线安装的包要进行一次验证。在线安装输入：<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio cudatoolkit = 10.1 -c pytorch</span><br></pre></td></tr></table></figure><br>这句话原话是：</p>
+<blockquote>
+<p>注意： Python 3.9用户将需要添加’-c = conda-forge<br>进行安装 conda install pytorch torchvision torchaudio cudatoolkit = 10.1 -c pytorch</p>
+</blockquote>
+<p>类似的安装指南，请官网找 <span class="exturl" data-url="aHR0cHM6Ly9weXRvcmNoLm9yZy/vvIzkuI3opoHmioTljZrlrqLjgILkuI3mmK/or7TliKvkurrnmoTljZrlrqLlhpnnmoTkuI3lr7nvvIzogIzmmK/phY3njq/looPov5nnp43kuovmg4XvvIzkvaDnnIvliKvkurrnmoTljZrlrqLlsLHmmK/liLvoiJ/msYLliZHvvIzljbPkvb/ov5nnr4fljZrlrqLlnKjlh6DkuKrmnIjjgIHlh6DlubTliY3ml6Dmr5TmraPnoa7jgILkvYbmmK/njrDlnKjlroPlsLHkuI3lr7nkuobvvIzlj6/og73lj6rpnIDopoHlvq7osIPmn5DkuKrmjIfku6TvvIzkvYbkvaDnhafmkKzlsLHmmK/kvJrlh7rplJnjgII=">https://pytorch.org/，不要抄博客。不是说别人的博客写的不对，而是配环境这种事情，你看别人的博客就是刻舟求剑，即使这篇博客在几个月、几年前无比正确。但是现在它就不对了，可能只需要微调某个指令，但你照搬就是会出错。<i class="fa fa-external-link-alt"></i></span></p>
+<p>使用国内源，就把<code>-c pytorch</code>去掉，一开始我并不知道<code>-c pytorch</code>依然会使用国外官方源，但是敲完这行指令，会显示出每个要安装的软件包来自的源，所有的包都是清华源，但是pytorch这几个源和上面一堆长得不一样，就足以引起思考了。盲猜在安装过程中，显示安装包所来自的源可以通过<code>~/.condarc</code>的<code>show_channel_urls: true</code>来控制显示or不显示，我没有验证过，也没有看过文档，仅仅是经验推测。</p>
+<p>在安装过程中，遇到的其他犄角旮旯的问题，大多数都可以从这里找到：<span class="exturl" data-url="aHR0cHM6Ly90b29scy1wbGF0Zm9ybS1ndWlkZS5yZWFkdGhlZG9jcy5pby96aF9DTi9sYXRlc3Qv">https://tools-platform-guide.readthedocs.io/zh_CN/latest/<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Opencv"><a href="#Opencv" class="headerlink" title="Opencv"></a>Opencv</h3><p>其实，到了上一步已经可以用了，CUDA + CuDnn + Pytorch 三件套已经OK。但是项目需要用到opencv，于是就必须继续往下装。这一步遇到了很多蛋疼的问题：源有问题、conda有问题、opencv有问题、python有问题。最后总结：我有问题。</p>
+<p>其实有了conda，安装任何东西都是<code>conda insatll xxx</code>，无脑一行指令的事情。但是当一切方法都不管用，我提供一个不是办法的办法：打开 Links for opencv-python：<span class="exturl" data-url="aHR0cHM6Ly9weXBpLnR1bmEudHNpbmdodWEuZWR1LmNuL3NpbXBsZS9vcGVuY3YtcHl0aG9uLw==">https://pypi.tuna.tsinghua.edu.cn/simple/opencv-python/<i class="fa fa-external-link-alt"></i></span> 找到对应的版本下载，比如<code>opencv_python-4.2.0.34-cp38-cp38-manylinux1_x86_64.whl</code></p>
+<p>注意：opencv是有版本的，比如opencv3.x、opencv4.x，python也是有版本的，在这里，请选择和你conda内的python一样的版本，也就是python3.8，另外注意是linux_x86_64，这三个版本都对了才能装。话说回来：</p>
+<ul>
+<li>CUDA和cuDNN之间也是有版本对应关系的，写全了就是 cudnn v7.6.5 for CUDA10.1</li>
+<li>显卡驱动和CUDA之间也有对应关系，比如CUDA 10.1_243_426.00，要求显卡驱动版本不低于243</li>
+</ul>
+<p>最后，怎么装这个<code>opencv_python-4.2.0.34-cp38-cp38-manylinux1_x86_64.whl</code>？用<code>pip install</code>，而且注意了，是给conda的python装，不是给系统自带的python装。</p>
+<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><p>配环境最优雅的方式： <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9kYTFjN2RjNDIxN2E=">https://www.jianshu.com/p/da1c7dc4217a<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="ST-GCN-搭建"><a href="#ST-GCN-搭建" class="headerlink" title="ST-GCN 搭建"></a>ST-GCN 搭建</h2><p>参考：</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8xNDM5Njk4NzY=">https://zhuanlan.zhihu.com/p/143969876<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucHl0aG9uZi5jbi9yZWFkLzEwNDAxMg==">https://www.pythonf.cn/read/104012<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="ST-GCN-理解"><a href="#ST-GCN-理解" class="headerlink" title="ST-GCN 理解"></a>ST-GCN 理解</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzI3NjY2L2FydGljbGUvZGV0YWlscy84NDY0MDU0OQ==">https://blog.csdn.net/qq_41727666/article/details/84640549<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzU0NTA0NDcxL2Fuc3dlci82MTEyMjI4NjY=">https://www.zhihu.com/question/54504471/answer/611222866<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly96aG9lZi5jb20vMjAxOS8wOC8yNC8xNF9TVC1HY24v">https://zhoef.com/2019/08/24/14_ST-Gcn/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>配环境</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C结构体定义长度为0的数组</title>
+    <url>/2022/37.c%E8%AF%AD%E8%A8%80%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">char</span> <span class="keyword">const</span> *name;</span><br><span class="line">    <span class="keyword">char</span> intro[];</span><br><span class="line">&#125; Person;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
       </tags>
   </entry>
 </search>

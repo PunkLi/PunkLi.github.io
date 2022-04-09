@@ -6,7 +6,7 @@
   <link href="https://punkli.github.io/rss_skystarry.xml" rel="self"/>
   
   <link href="https://punkli.github.io/"/>
-  <updated>2021-01-23T15:47:12.296Z</updated>
+  <updated>2022-04-09T21:36:48.999Z</updated>
   <id>https://punkli.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C结构体定义长度为0的数组</title>
+    <link href="https://punkli.github.io/2022/37.c%E8%AF%AD%E8%A8%80%E7%94%A8%E6%B3%95/"/>
+    <id>https://punkli.github.io/2022/37.c%E8%AF%AD%E8%A8%80%E7%94%A8%E6%B3%95/</id>
+    <published>2022-04-10T11:09:17.000Z</published>
+    <updated>2022-04-09T21:36:48.999Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="编程" scheme="https://punkli.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="编程" scheme="https://punkli.github.io/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>给毕设配环境</title>
@@ -413,25 +438,6 @@ P(\omega_i|x)=\frac{p(x,\omega_i)}{p(x)}=\frac{p(x|\omega_i)p(\omega_i)}{p(x)},i
     
     
     <category term="工具链" scheme="https://punkli.github.io/tags/%E5%B7%A5%E5%85%B7%E9%93%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kalman with eigen</title>
-    <link href="https://punkli.github.io/2018/12.matrix-decomposition/"/>
-    <id>https://punkli.github.io/2018/12.matrix-decomposition/</id>
-    <published>2018-08-21T20:10:24.000Z</published>
-    <updated>2020-12-09T01:10:09.585Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cHM6Ly9naXRodWIuY29tL21oZXJiL2thbG1hblQ=&quot;&gt;https://github.com/mherb/kalmanT&lt;i class=&quot;fa fa-external-link-alt&quot;&gt;&lt;/i&gt;&lt;/span&gt; 是一个基于eigin3的Kalman-Filter，包含了Extended Kalman Filter (EKF)、Square Root Extended Kalman Filter (SR-EKF)、Unscented Kalman Filter (UKF)、Square Root Unscented Kalman Filter (SR-UKF)，4种Kalman filter。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="数学" scheme="https://punkli.github.io/categories/%E6%95%B0%E5%AD%A6/"/>
-    
-    
-    <category term="线性代数" scheme="https://punkli.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
     
   </entry>
   
