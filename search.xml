@@ -2589,9 +2589,23 @@ Training Set Accuracy: 0.9592
       </tags>
   </entry>
   <entry>
-    <title>C结构体定义长度为0的数组</title>
+    <title>柔性数组</title>
     <url>/2022/37.c%E8%AF%AD%E8%A8%80%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">char</span> <span class="keyword">const</span> *name;</span><br><span class="line">    <span class="keyword">char</span> intro[];</span><br><span class="line">&#125; Person;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    <content><![CDATA[<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">char</span> <span class="keyword">const</span> *name; <span class="comment">// 8 byte，指向外部地址</span></span><br><span class="line">    <span class="keyword">char</span> intro[];     <span class="comment">// 类似指针，但是指向固定的地方（结构体的末尾）    </span></span><br><span class="line">&#125; Person;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如何构建这个结构体呢？<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">Person *<span class="title">person</span><span class="params">(<span class="keyword">char</span> <span class="keyword">const</span> *name, <span class="keyword">int</span> age, <span class="keyword">char</span> <span class="keyword">const</span> *intro)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">size_t</span> intro_len = (intro ? <span class="built_in">strlen</span>(intro) : <span class="number">0</span>) + <span class="number">1</span>; <span class="comment">// char数组以&#x27;\0&#x27;结尾</span></span><br><span class="line">    Person *p = (Person *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Person) + intro_len);</span><br><span class="line">    p-&gt;age = age;</span><br><span class="line">    p-&gt;name = name;</span><br><span class="line">    <span class="keyword">if</span> (intro) &#123;</span><br><span class="line">        <span class="built_in">strcpy</span>(p-&gt;intro, intro);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        p-&gt;intro[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>正则表达式</title>
+    <url>/2022/38.%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="什么是正则表达式？"><a href="#什么是正则表达式？" class="headerlink" title="什么是正则表达式？"></a>什么是正则表达式？</h2><p>在编写处理字符串的程序或网页时，经常会有查找符合某些复杂规则的字符串的需要。正则表达式就是用于描述这些规则的工具。换句话说，正则表达式就是记录文本规则的代码。</p>
+<h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2>]]></content>
       <categories>
         <category>编程</category>
       </categories>
